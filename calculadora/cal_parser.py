@@ -20,16 +20,22 @@ def p_expresion_1(p):
 
 
 def p_expresion(p):
-		'''expresion : expresion SUMA termino	| expresion SUMA termino	| termino'''
-	pass
+		'''expresion : expresion SUMA termino 
+                          | expresion RESTA termino 
+                          | termino'''
+pass
 
 def p_termino(p):
-		'''termino : termino MULTIPLICACION factor	| termino DIVISION factor| factor'''
-	pass
+		'''termino : termino MULTIPLICACION factor	
+                          | termino DIVISION factor
+                          | factor'''
+pass
 
 def p_factor(p):
-		'''factor : PARDER expresion PARIZQ | IDEN | NUM'''
-	pass
+		'''factor : PARDER expresion PARIZQ 
+                          | IDEN 
+                          | NUM'''
+pass
 
 
 
@@ -38,7 +44,7 @@ def p_error(p):
 		if p is not None:
 			print ("ERROR SINTACTICO EN LA LINEA " + str(p.lexer.lineno) + " NO SE ESPERABA EL Token  " + str(p.value))
 		else:
-			print ("ERROR SINTACTICO EN LA LINEA: " + str(cminus_lexer.lexer.lineno))
+			print ("ERROR SINTACTICO EN LA LINEA: " + str(cal_lexer.lexer.lineno))
 	else:
 		raise Exception('syntax', 'error')
 		

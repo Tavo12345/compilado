@@ -1,0 +1,207 @@
+Created by PLY version 3.9 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> declaration_list
+Rule 2     declaration_list -> declaration_list declaration
+Rule 3     expresion_est -> expresion_est SEMICOLON
+Rule 4     declaration_list -> declaration
+Rule 5     declaration -> var_declaration
+Rule 6     declaration -> fun_declaration
+Rule 7     declaration -> header_declaration
+Rule 8     expresion -> expresion SUMA termino
+Rule 9     expresion -> expresion RESTA termino
+Rule 10    expresion -> termino
+Rule 11    header_declaration -> HASHTAG DEFINE ID NUMBER
+Rule 12    termino -> termino MULTIPLICACION factor
+Rule 13    termino -> termino DIVISION factor
+Rule 14    termino -> factor
+Rule 15    header_declaration -> HASHTAG INCLUDE ID DOT ID
+Rule 16    factor -> PARDER expresion PARIZQ
+Rule 17    factor -> IDEN
+Rule 18    factor -> NUM
+Rule 19    var_declaration -> type_specifier var_declaration2 SEMICOLON
+Rule 20    var_declaration -> type_specifier ID LBRACKET NUMBER RBRACKET SEMICOLON
+Rule 21    var_declaration2 -> ID COMMA var_declaration2
+Rule 22    var_declaration2 -> ID
+Rule 23    var_declaration2 -> ID EQUAL NUMBER COMMA var_declaration2
+Rule 24    var_declaration2 -> ID EQUAL NUMBER
+Rule 25    var_declaration2 -> TIMES ID COMMA var_declaration2
+Rule 26    var_declaration2 -> TIMES ID
+Rule 27    var_declaration2 -> ID EQUAL ID COMMA var_declaration2
+Rule 28    var_declaration2 -> ID EQUAL ID
+Rule 29    var_declaration2 -> COMMA
+Rule 30    var_declaration2 -> TIMES TIMES ID
+Rule 31    var_declaration2 -> TIMES TIMES ID COMMA var_declaration2
+Rule 32    var_declaration2 -> AMPERSANT ID
+Rule 33    var_declaration2 -> AMPERSANT ID COMMA var_declaration2
+Rule 34    type_specifier -> INT
+Rule 35    type_specifier -> VOID
+Rule 36    type_specifier -> LONG
+Rule 37    type_specifier -> SHORT
+Rule 38    type_specifier -> DOUBLE
+Rule 39    type_specifier -> FLOAT
+Rule 40    type_specifier -> CHAR
+Rule 41    type_specifier -> BOOLEAN
+Rule 42    fun_declaration -> type_specifier ID LPAREN params RPAREN compount_stmt
+Rule 43    params -> param_list
+Rule 44    params -> VOID
+Rule 45    param_list -> param_list COMMA param
+Rule 46    param_list -> param
+Rule 47    param_list -> empty
+Rule 48    param -> type_specifier ID
+Rule 49    param -> type_specifier ID LBRACKET RBRACKET
+Rule 50    compount_stmt -> LBLOCK local_declarations statement_list RBLOCK
+Rule 51    local_declarations -> local_declarations var_declaration
+Rule 52    local_declarations -> empty
+Rule 53    statement_list -> statement_list statement
+Rule 54    statement_list -> empty
+Rule 55    statement -> expression_stmt
+Rule 56    statement -> compount_stmt
+Rule 57    statement -> selection_stmt
+Rule 58    statement -> iteration_stmt
+Rule 59    statement -> return_stmt
+Rule 60    expression_stmt -> expression SEMICOLON
+Rule 61    expression_stmt -> SEMICOLON
+Rule 62    selection_stmt -> IF LPAREN expression RPAREN statement
+Rule 63    selection_stmt -> IF LPAREN expression RPAREN statement ELSE statement
+Rule 64    selection_stmt -> SWITCH LPAREN var RPAREN statement
+Rule 65    selection_stmt -> CASE NUMBER COLON statement BREAK SEMICOLON
+Rule 66    selection_stmt -> DEFAULT COLON statement BREAK SEMICOLON
+Rule 67    iteration_stmt -> WHILE LPAREN expression RPAREN statement
+Rule 68    iteration_stmt -> FOR LPAREN var_declaration2 SEMICOLON expression SEMICOLON additive_expression RPAREN statement
+Rule 69    return_stmt -> RETURN SEMICOLON
+Rule 70    return_stmt -> RETURN expression SEMICOLON
+Rule 71    expression -> var EQUAL expression
+Rule 72    expression -> simple_expression
+Rule 73    expression -> var EQUAL AMPERSANT ID
+Rule 74    var -> ID
+Rule 75    var -> ID LBRACKET expression RBRACKET
+Rule 76    simple_expression -> additive_expression relop additive_expression
+Rule 77    simple_expression -> additive_expression
+Rule 78    relop -> LESS
+Rule 79    relop -> LESSEQUAL
+Rule 80    relop -> GREATER
+Rule 81    relop -> GREATEREQUAL
+Rule 82    relop -> DEQUAL
+Rule 83    relop -> DISTINT
+Rule 84    relop -> ISEQUAL
+Rule 85    additive_expression -> additive_expression addop term
+Rule 86    additive_expression -> term
+Rule 87    additive_expression -> term MINUSMINUS
+Rule 88    additive_expression -> term PLUSPLUS
+Rule 89    addop -> PLUS
+Rule 90    addop -> MINUS
+Rule 91    term -> term mulop factor
+Rule 92    term -> factor
+Rule 93    mulop -> TIMES
+Rule 94    mulop -> DIVIDE
+Rule 95    factor -> LPAREN expression RPAREN
+Rule 96    factor -> var
+Rule 97    factor -> call
+Rule 98    factor -> NUMBER
+Rule 99    call -> ID LPAREN args RPAREN
+Rule 100   args -> args_list
+Rule 101   args -> empty
+Rule 102   args_list -> args_list COMMA expression
+Rule 103   args_list -> expression
+Rule 104   empty -> <empty>
+
+Terminals, with rules where they appear
+
+DIVISION             : 13
+IDEN                 : 17
+MULTIPLICACION       : 12
+NUM                  : 18
+PARDER               : 16
+PARIZQ               : 16
+RESTA                : 9
+SEMICOLON            : 3 19 20 60 61 65 66 68 68 69 70
+SUMA                 : 8
+error                : 
+
+Nonterminals, with rules where they appear
+
+AMPERSANT            : 32 33 73
+BOOLEAN              : 41
+BREAK                : 65 66
+CASE                 : 65
+CHAR                 : 40
+COLON                : 65 66
+COMMA                : 21 23 25 27 29 31 33 45 102
+DEFAULT              : 66
+DEFINE               : 11
+DEQUAL               : 82
+DISTINT              : 83
+DIVIDE               : 94
+DOT                  : 15
+DOUBLE               : 38
+ELSE                 : 63
+EQUAL                : 23 24 27 28 71 73
+FLOAT                : 39
+FOR                  : 68
+GREATER              : 80
+GREATEREQUAL         : 81
+HASHTAG              : 11 15
+ID                   : 11 15 15 20 21 22 23 24 25 26 27 27 28 28 30 31 32 33 42 48 49 73 74 75 99
+IF                   : 62 63
+INCLUDE              : 15
+INT                  : 34
+ISEQUAL              : 84
+LBLOCK               : 50
+LBRACKET             : 20 49 75
+LESS                 : 78
+LESSEQUAL            : 79
+LONG                 : 36
+LPAREN               : 42 62 63 64 67 68 95 99
+MINUS                : 90
+MINUSMINUS           : 87
+NUMBER               : 11 20 23 24 65 98
+PLUS                 : 89
+PLUSPLUS             : 88
+RBLOCK               : 50
+RBRACKET             : 20 49 75
+RETURN               : 69 70
+RPAREN               : 42 62 63 64 67 68 95 99
+SHORT                : 37
+SWITCH               : 64
+TIMES                : 25 26 30 30 31 31 93
+VOID                 : 35 44
+WHILE                : 67
+additive_expression  : 68 76 76 77 85
+addop                : 85
+args                 : 99
+args_list            : 100 102
+call                 : 97
+compount_stmt        : 42 56
+declaration          : 2 4
+declaration_list     : 1 2
+empty                : 47 52 54 101
+expresion            : 8 9 16
+expresion_est        : 3
+expression           : 60 62 63 67 68 70 71 75 95 102 103
+expression_stmt      : 55
+factor               : 12 13 14 91 92
+fun_declaration      : 6
+header_declaration   : 7
+iteration_stmt       : 58
+local_declarations   : 50 51
+mulop                : 91
+param                : 45 46
+param_list           : 43 45
+params               : 42
+program              : 0
+relop                : 76
+return_stmt          : 59
+selection_stmt       : 57
+simple_expression    : 72
+statement            : 53 62 63 63 64 65 66 67 68
+statement_list       : 50 53
+term                 : 85 86 87 88 91
+termino              : 8 9 10 12 13
+type_specifier       : 19 20 42 48 49
+var                  : 64 71 73 96
+var_declaration      : 5 51
+var_declaration2     : 19 21 23 25 27 31 33 68
+
