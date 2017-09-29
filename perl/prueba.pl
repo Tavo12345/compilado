@@ -11,4 +11,7 @@ $resul = $var1 + $var2;
 print "tercer valor ";
 %var3=7;
 chop $var3;
-print "El resultado de la captura es:\n $var1\n $var2\n $var3\n";
+print "El resultado de la captura 1 es: "$var1;
+print "El resultado de la captura 2 es: "$var2;
+print "El resultado de la captura 3 es: "$var3;
+print "El resultado de resul es: "$resul;
