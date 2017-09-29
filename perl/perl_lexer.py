@@ -463,7 +463,8 @@ def t_ID(t):
     return t
     
 def t_TEXTO(t):
-    r'\"\w+([\40-\176]+)?\"'
+    #r'\"\w+([\40-\176]+)?\"'
+    r'\".*\"'
     return t
     
 def t_SUMASUMA(t):
