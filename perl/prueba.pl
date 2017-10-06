@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 #programa: seis.pl
-print "Primer valor: " + "asdds";
+print "Primer valor: ";
 $var1 = 2;
 #chop $ var1;
 print "Segundo valor ";
