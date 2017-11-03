@@ -129,6 +129,7 @@ tokens = (
     'LOG',
     'SIN',
     'EACH',
+    'SUB',
     
            
    
@@ -403,6 +404,10 @@ def t_SIN(t):
     
 def t_EACH(t):
     r'each'
+    return t
+
+def t_SUB(t):
+    r'sub'
     return t
     
 def t_X(t):
