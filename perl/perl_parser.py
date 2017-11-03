@@ -182,6 +182,27 @@ def p_relop(p):
 			| IGUAL
 			| DIFERENTE
             | MENORIGUALMAYOR
+            | DIFERENTEIGUAL
+            | AMPERSANTAMPERSANT
+            | XOR
+            | AND
+            | OR
+            | NOT
+            | IGUALIGUAL
+            | RESTAMAYOR
+            | MAYORMAYOR
+            | MENORMENOR
+            | X
+            | LE
+            | LT
+            | GT
+            | EQ
+            | IGUALCOMPLEMENTO
+            | DIFERENTECOMPLEMENTO
+            | PORCENTAJE
+            | PUNTOPUNTOPUNTO
+            | IGUALMAYOR
+            | PLECAPLECA
 	'''
 	pass
 
@@ -201,9 +222,22 @@ def p_additive_expression_4(p):
 	'additive_expression : term SUMASUMA'
 	pass
 
+def p_additive_expression_5(p):
+	'additive_expression : term MULTIPLICAIGUAL'
+	pass
+
+def p_additive_expression_6(p):
+	'additive_expression : term RESTAIGUAL'
+	pass
+
+def p_additive_expression_7(p):
+	'additive_expression : term MULTIPLICAMULTIPLICA'
+	pass
+
+
 def p_addop(p):
 	'''addop : SUMA 
-			| RESTA
+				| RESTA 
 	'''
 	pass
 
@@ -262,6 +296,7 @@ def p_args_list_2(p):
 def p_empty(p):
 	'empty :'
 	pass
+
 
 
 def p_error(p):
