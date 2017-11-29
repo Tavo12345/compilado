@@ -1,0 +1,3015 @@
+Created by PLY version 3.9 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    EXP
+    HEX
+    UNLESS
+    LENGTH
+    EACH
+    LC
+    OCT
+    DIE
+    REVERSE
+    DELETE
+    GE
+    ORD
+    GOTO
+    DEFINED
+    POST
+    CONTINUE
+    COMPLEMENTO
+    EXIT
+    PLECA
+    COLON
+    ELSIF
+    UCFIRST
+    SPRINTF
+    LAST
+    CHOWN
+    UC
+    ABS
+    SIN
+    INDEX
+    PUNTO
+    HASHTAG
+    M
+    NEXT
+    SDIAGONAL
+    CMP
+    CRYPT
+    TRDIAGONAL
+    SUMAIGUAL
+    SALTOLINEA
+    CHMOD
+    DO
+    PUNTOPUNTO
+    INTERROGACOLON
+    REDO
+    FORK
+    EOF
+    NE
+    CARET
+    SEX
+    CHR
+    FILENO
+    YDIAGONAL
+    RINDEX
+    QDIAGONALSTRINGDIAGONAL
+    QQDIAGONALSTRINGDIAGONAL
+    STUDY
+    FOREACH
+    INT
+    SUBSTR
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> declaration_list
+Rule 2     declaration_list -> declaration_list declaration
+Rule 3     declaration_list -> declaration
+Rule 4     declaration -> var_declaration
+Rule 5     declaration -> fun_declaration
+Rule 6     declaration -> fun_execute
+Rule 7     declaration -> header_declaration
+Rule 8     header_declaration -> CABECERA
+Rule 9     var_declaration -> var_declaration3 SEMICOLON
+Rule 10    var_declaration2 -> ID LBRACKET NUMERO RBRACKET SEMICOLON
+Rule 11    var_declaration3 -> ID COMA var_declaration2
+Rule 12    var_declaration3 -> ID
+Rule 13    var_declaration3 -> ID IGUAL NUMERO COMA var_declaration2
+Rule 14    var_declaration3 -> ID IGUAL NUMERO
+Rule 15    var_declaration3 -> ID IGUAL TEXTO COMA var_declaration2
+Rule 16    var_declaration3 -> ID IGUAL TEXTO
+Rule 17    var_declaration3 -> ID IGUAL simple_expression
+Rule 18    var_declaration3 -> MULTIPLICA ID COMA var_declaration2
+Rule 19    var_declaration3 -> MULTIPLICA ID
+Rule 20    var_declaration3 -> ID IGUAL ID COMA var_declaration2
+Rule 21    var_declaration3 -> ID IGUAL ID
+Rule 22    var_declaration3 -> COMA
+Rule 23    var_declaration3 -> MULTIPLICA MULTIPLICA ID
+Rule 24    var_declaration3 -> MULTIPLICA MULTIPLICA ID COMA var_declaration2
+Rule 25    fun_execute -> PRINT expression SEMICOLON
+Rule 26    fun_execute -> PRINT expression COMA expression SEMICOLON
+Rule 27    fun_execute -> CHOP expression SEMICOLON
+Rule 28    fun_declaration -> SUB IDF LBLOCK compount_stmt RBLOCK
+Rule 29    params -> param_list
+Rule 30    param_list -> param_list COMA param
+Rule 31    param_list -> param
+Rule 32    param_list -> empty
+Rule 33    param -> ID
+Rule 34    param -> ID LBRACKET RBRACKET
+Rule 35    compount_stmt -> var_declaration
+Rule 36    compount_stmt -> fun_execute
+Rule 37    compount_stmt -> header_declaration
+Rule 38    local_declarations -> local_declarations var_declaration
+Rule 39    local_declarations -> empty
+Rule 40    statement_list -> statement_list statement
+Rule 41    statement_list -> empty
+Rule 42    statement -> expression_stmt
+Rule 43    statement -> compount_stmt
+Rule 44    statement -> selection_stmt
+Rule 45    statement -> iteration_stmt
+Rule 46    statement -> return_stmt
+Rule 47    expression_stmt -> expression SEMICOLON
+Rule 48    expression_stmt -> SEMICOLON
+Rule 49    selection_stmt -> IF LPAREN expression RPAREN statement
+Rule 50    selection_stmt -> IF LPAREN expression RPAREN statement ELSE statement
+Rule 51    selection_stmt -> UNTIL LPAREN expression RPAREN statement
+Rule 52    iteration_stmt -> WHILE LPAREN expression RPAREN statement
+Rule 53    iteration_stmt -> FOR LPAREN var_declaration2 SEMICOLON expression SEMICOLON additive_expression RPAREN statement
+Rule 54    return_stmt -> RETURN SEMICOLON
+Rule 55    return_stmt -> RETURN expression SEMICOLON
+Rule 56    expression -> var IGUAL expression
+Rule 57    expression -> simple_expression
+Rule 58    expression -> var IGUAL AMPERSANT ID
+Rule 59    var -> ID
+Rule 60    var -> TEXTO
+Rule 61    var -> ID LBRACKET expression RBRACKET
+Rule 62    simple_expression -> additive_expression relop additive_expression
+Rule 63    simple_expression -> additive_expression
+Rule 64    relop -> MENOR
+Rule 65    relop -> MENORIGUAL
+Rule 66    relop -> MAYOR
+Rule 67    relop -> MAYORIGUAL
+Rule 68    relop -> IGUAL
+Rule 69    relop -> DIFERENTE
+Rule 70    relop -> MENORIGUALMAYOR
+Rule 71    relop -> DIFERENTEIGUAL
+Rule 72    relop -> AMPERSANTAMPERSANT
+Rule 73    relop -> XOR
+Rule 74    relop -> AND
+Rule 75    relop -> OR
+Rule 76    relop -> NOT
+Rule 77    relop -> IGUALIGUAL
+Rule 78    relop -> RESTAMAYOR
+Rule 79    relop -> MAYORMAYOR
+Rule 80    relop -> MENORMENOR
+Rule 81    relop -> X
+Rule 82    relop -> LE
+Rule 83    relop -> LT
+Rule 84    relop -> GT
+Rule 85    relop -> EQ
+Rule 86    relop -> IGUALCOMPLEMENTO
+Rule 87    relop -> DIFERENTECOMPLEMENTO
+Rule 88    relop -> PORCENTAJE
+Rule 89    relop -> PUNTOPUNTOPUNTO
+Rule 90    relop -> IGUALMAYOR
+Rule 91    relop -> PLECAPLECA
+Rule 92    additive_expression -> additive_expression addop term
+Rule 93    additive_expression -> additive_expression addop additive_expression
+Rule 94    additive_expression -> term
+Rule 95    additive_expression -> term RESTARESTA
+Rule 96    additive_expression -> term SUMASUMA
+Rule 97    additive_expression -> term MULTIPLICAIGUAL
+Rule 98    additive_expression -> term RESTAIGUAL
+Rule 99    additive_expression -> term MULTIPLICAMULTIPLICA
+Rule 100   addop -> SUMA
+Rule 101   addop -> RESTA
+Rule 102   term -> term mulop factor
+Rule 103   term -> factor
+Rule 104   mulop -> MULTIPLICA
+Rule 105   mulop -> DIVIDE
+Rule 106   factor -> LPAREN expression RPAREN
+Rule 107   factor -> var
+Rule 108   factor -> call
+Rule 109   factor -> NUMERO
+Rule 110   call -> ID LPAREN args RPAREN
+Rule 111   args -> args_list
+Rule 112   args -> empty
+Rule 113   args_list -> args_list COMA expression
+Rule 114   args_list -> expression
+Rule 115   empty -> <empty>
+
+Terminals, with rules where they appear
+
+ABS                  : 
+AMPERSANT            : 58
+AMPERSANTAMPERSANT   : 72
+AND                  : 74
+CABECERA             : 8
+CARET                : 
+CHMOD                : 
+CHOP                 : 27
+CHOWN                : 
+CHR                  : 
+CMP                  : 
+COLON                : 
+COMA                 : 11 13 15 18 20 22 24 26 30 113
+COMPLEMENTO          : 
+CONTINUE             : 
+CRYPT                : 
+DEFINED              : 
+DELETE               : 
+DIE                  : 
+DIFERENTE            : 69
+DIFERENTECOMPLEMENTO : 87
+DIFERENTEIGUAL       : 71
+DIVIDE               : 105
+DO                   : 
+EACH                 : 
+ELSE                 : 50
+ELSIF                : 
+EOF                  : 
+EQ                   : 85
+EXIT                 : 
+EXP                  : 
+FILENO               : 
+FOR                  : 53
+FOREACH              : 
+FORK                 : 
+GE                   : 
+GOTO                 : 
+GT                   : 84
+HASHTAG              : 
+HEX                  : 
+ID                   : 10 11 12 13 14 15 16 17 18 19 20 20 21 21 23 24 33 34 58 59 61 110
+IDF                  : 28
+IF                   : 49 50
+IGUAL                : 13 14 15 16 17 20 21 56 58 68
+IGUALCOMPLEMENTO     : 86
+IGUALIGUAL           : 77
+IGUALMAYOR           : 90
+INDEX                : 
+INT                  : 
+INTERROGACOLON       : 
+LAST                 : 
+LBLOCK               : 28
+LBRACKET             : 10 34 61
+LC                   : 
+LE                   : 82
+LENGTH               : 
+LPAREN               : 49 50 51 52 53 106 110
+LT                   : 83
+M                    : 
+MAYOR                : 66
+MAYORIGUAL           : 67
+MAYORMAYOR           : 79
+MENOR                : 64
+MENORIGUAL           : 65
+MENORIGUALMAYOR      : 70
+MENORMENOR           : 80
+MULTIPLICA           : 18 19 23 23 24 24 104
+MULTIPLICAIGUAL      : 97
+MULTIPLICAMULTIPLICA : 99
+NE                   : 
+NEXT                 : 
+NOT                  : 76
+NUMERO               : 10 13 14 109
+OCT                  : 
+OR                   : 75
+ORD                  : 
+PLECA                : 
+PLECAPLECA           : 91
+PORCENTAJE           : 88
+POST                 : 
+PRINT                : 25 26
+PUNTO                : 
+PUNTOPUNTO           : 
+PUNTOPUNTOPUNTO      : 89
+QDIAGONALSTRINGDIAGONAL : 
+QQDIAGONALSTRINGDIAGONAL : 
+RBLOCK               : 28
+RBRACKET             : 10 34 61
+REDO                 : 
+RESTA                : 101
+RESTAIGUAL           : 98
+RESTAMAYOR           : 78
+RESTARESTA           : 95
+RETURN               : 54 55
+REVERSE              : 
+RINDEX               : 
+RPAREN               : 49 50 51 52 53 106 110
+SALTOLINEA           : 
+SDIAGONAL            : 
+SEMICOLON            : 9 10 25 26 27 47 48 53 53 54 55
+SEX                  : 
+SIN                  : 
+SPRINTF              : 
+STUDY                : 
+SUB                  : 28
+SUBSTR               : 
+SUMA                 : 100
+SUMAIGUAL            : 
+SUMASUMA             : 96
+TEXTO                : 15 16 60
+TRDIAGONAL           : 
+UC                   : 
+UCFIRST              : 
+UNLESS               : 
+UNTIL                : 51
+WHILE                : 52
+X                    : 81
+XOR                  : 73
+YDIAGONAL            : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+additive_expression  : 53 62 62 63 92 93 93
+addop                : 92 93
+args                 : 110
+args_list            : 111 113
+call                 : 108
+compount_stmt        : 28 43
+declaration          : 2 3
+declaration_list     : 1 2
+empty                : 32 39 41 112
+expression           : 25 26 26 27 47 49 50 51 52 53 55 56 61 106 113 114
+expression_stmt      : 42
+factor               : 102 103
+fun_declaration      : 5
+fun_execute          : 6 36
+header_declaration   : 7 37
+iteration_stmt       : 45
+local_declarations   : 38
+mulop                : 102
+param                : 30 31
+param_list           : 29 30
+params               : 
+program              : 0
+relop                : 62
+return_stmt          : 46
+selection_stmt       : 44
+simple_expression    : 17 57
+statement            : 40 49 50 50 51 52 53
+statement_list       : 40
+term                 : 92 94 95 96 97 98 99 102
+var                  : 56 58 107
+var_declaration      : 4 35 38
+var_declaration2     : 11 13 15 18 20 24 53
+var_declaration3     : 9
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . declaration_list
+    (2) declaration_list -> . declaration_list declaration
+    (3) declaration_list -> . declaration
+    (4) declaration -> . var_declaration
+    (5) declaration -> . fun_declaration
+    (6) declaration -> . fun_execute
+    (7) declaration -> . header_declaration
+    (9) var_declaration -> . var_declaration3 SEMICOLON
+    (28) fun_declaration -> . SUB IDF LBLOCK compount_stmt RBLOCK
+    (25) fun_execute -> . PRINT expression SEMICOLON
+    (26) fun_execute -> . PRINT expression COMA expression SEMICOLON
+    (27) fun_execute -> . CHOP expression SEMICOLON
+    (8) header_declaration -> . CABECERA
+    (11) var_declaration3 -> . ID COMA var_declaration2
+    (12) var_declaration3 -> . ID
+    (13) var_declaration3 -> . ID IGUAL NUMERO COMA var_declaration2
+    (14) var_declaration3 -> . ID IGUAL NUMERO
+    (15) var_declaration3 -> . ID IGUAL TEXTO COMA var_declaration2
+    (16) var_declaration3 -> . ID IGUAL TEXTO
+    (17) var_declaration3 -> . ID IGUAL simple_expression
+    (18) var_declaration3 -> . MULTIPLICA ID COMA var_declaration2
+    (19) var_declaration3 -> . MULTIPLICA ID
+    (20) var_declaration3 -> . ID IGUAL ID COMA var_declaration2
+    (21) var_declaration3 -> . ID IGUAL ID
+    (22) var_declaration3 -> . COMA
+    (23) var_declaration3 -> . MULTIPLICA MULTIPLICA ID
+    (24) var_declaration3 -> . MULTIPLICA MULTIPLICA ID COMA var_declaration2
+
+    SUB             shift and go to state 5
+    PRINT           shift and go to state 3
+    CHOP            shift and go to state 11
+    CABECERA        shift and go to state 13
+    ID              shift and go to state 12
+    MULTIPLICA      shift and go to state 7
+    COMA            shift and go to state 6
+
+    fun_execute                    shift and go to state 1
+    declaration_list               shift and go to state 2
+    program                        shift and go to state 4
+    declaration                    shift and go to state 9
+    var_declaration                shift and go to state 10
+    var_declaration3               shift and go to state 8
+    fun_declaration                shift and go to state 14
+    header_declaration             shift and go to state 15
+
+state 1
+
+    (6) declaration -> fun_execute .
+
+    SUB             reduce using rule 6 (declaration -> fun_execute .)
+    PRINT           reduce using rule 6 (declaration -> fun_execute .)
+    CHOP            reduce using rule 6 (declaration -> fun_execute .)
+    CABECERA        reduce using rule 6 (declaration -> fun_execute .)
+    ID              reduce using rule 6 (declaration -> fun_execute .)
+    MULTIPLICA      reduce using rule 6 (declaration -> fun_execute .)
+    COMA            reduce using rule 6 (declaration -> fun_execute .)
+    $end            reduce using rule 6 (declaration -> fun_execute .)
+
+
+state 2
+
+    (1) program -> declaration_list .
+    (2) declaration_list -> declaration_list . declaration
+    (4) declaration -> . var_declaration
+    (5) declaration -> . fun_declaration
+    (6) declaration -> . fun_execute
+    (7) declaration -> . header_declaration
+    (9) var_declaration -> . var_declaration3 SEMICOLON
+    (28) fun_declaration -> . SUB IDF LBLOCK compount_stmt RBLOCK
+    (25) fun_execute -> . PRINT expression SEMICOLON
+    (26) fun_execute -> . PRINT expression COMA expression SEMICOLON
+    (27) fun_execute -> . CHOP expression SEMICOLON
+    (8) header_declaration -> . CABECERA
+    (11) var_declaration3 -> . ID COMA var_declaration2
+    (12) var_declaration3 -> . ID
+    (13) var_declaration3 -> . ID IGUAL NUMERO COMA var_declaration2
+    (14) var_declaration3 -> . ID IGUAL NUMERO
+    (15) var_declaration3 -> . ID IGUAL TEXTO COMA var_declaration2
+    (16) var_declaration3 -> . ID IGUAL TEXTO
+    (17) var_declaration3 -> . ID IGUAL simple_expression
+    (18) var_declaration3 -> . MULTIPLICA ID COMA var_declaration2
+    (19) var_declaration3 -> . MULTIPLICA ID
+    (20) var_declaration3 -> . ID IGUAL ID COMA var_declaration2
+    (21) var_declaration3 -> . ID IGUAL ID
+    (22) var_declaration3 -> . COMA
+    (23) var_declaration3 -> . MULTIPLICA MULTIPLICA ID
+    (24) var_declaration3 -> . MULTIPLICA MULTIPLICA ID COMA var_declaration2
+
+    $end            reduce using rule 1 (program -> declaration_list .)
+    SUB             shift and go to state 5
+    PRINT           shift and go to state 3
+    CHOP            shift and go to state 11
+    CABECERA        shift and go to state 13
+    ID              shift and go to state 12
+    MULTIPLICA      shift and go to state 7
+    COMA            shift and go to state 6
+
+    var_declaration                shift and go to state 10
+    header_declaration             shift and go to state 15
+    declaration                    shift and go to state 16
+    fun_declaration                shift and go to state 14
+    fun_execute                    shift and go to state 1
+    var_declaration3               shift and go to state 8
+
+state 3
+
+    (25) fun_execute -> PRINT . expression SEMICOLON
+    (26) fun_execute -> PRINT . expression COMA expression SEMICOLON
+    (56) expression -> . var IGUAL expression
+    (57) expression -> . simple_expression
+    (58) expression -> . var IGUAL AMPERSANT ID
+    (59) var -> . ID
+    (60) var -> . TEXTO
+    (61) var -> . ID LBRACKET expression RBRACKET
+    (62) simple_expression -> . additive_expression relop additive_expression
+    (63) simple_expression -> . additive_expression
+    (92) additive_expression -> . additive_expression addop term
+    (93) additive_expression -> . additive_expression addop additive_expression
+    (94) additive_expression -> . term
+    (95) additive_expression -> . term RESTARESTA
+    (96) additive_expression -> . term SUMASUMA
+    (97) additive_expression -> . term MULTIPLICAIGUAL
+    (98) additive_expression -> . term RESTAIGUAL
+    (99) additive_expression -> . term MULTIPLICAMULTIPLICA
+    (102) term -> . term mulop factor
+    (103) term -> . factor
+    (106) factor -> . LPAREN expression RPAREN
+    (107) factor -> . var
+    (108) factor -> . call
+    (109) factor -> . NUMERO
+    (110) call -> . ID LPAREN args RPAREN
+
+    ID              shift and go to state 25
+    TEXTO           shift and go to state 23
+    LPAREN          shift and go to state 27
+    NUMERO          shift and go to state 17
+
+    call                           shift and go to state 24
+    expression                     shift and go to state 20
+    term                           shift and go to state 26
+    var                            shift and go to state 18
+    factor                         shift and go to state 19
+    additive_expression            shift and go to state 22
+    simple_expression              shift and go to state 21
+
+state 4
+
+    (0) S' -> program .
+
+
+
+state 5
+
+    (28) fun_declaration -> SUB . IDF LBLOCK compount_stmt RBLOCK
+
+    IDF             shift and go to state 28
+
+
+state 6
+
+    (22) var_declaration3 -> COMA .
+
+    SEMICOLON       reduce using rule 22 (var_declaration3 -> COMA .)
+
+
+state 7
+
+    (18) var_declaration3 -> MULTIPLICA . ID COMA var_declaration2
+    (19) var_declaration3 -> MULTIPLICA . ID
+    (23) var_declaration3 -> MULTIPLICA . MULTIPLICA ID
+    (24) var_declaration3 -> MULTIPLICA . MULTIPLICA ID COMA var_declaration2
+
+    ID              shift and go to state 30
+    MULTIPLICA      shift and go to state 29
+
+
+state 8
+
+    (9) var_declaration -> var_declaration3 . SEMICOLON
+
+    SEMICOLON       shift and go to state 31
+
+
+state 9
+
+    (3) declaration_list -> declaration .
+
+    SUB             reduce using rule 3 (declaration_list -> declaration .)
+    PRINT           reduce using rule 3 (declaration_list -> declaration .)
+    CHOP            reduce using rule 3 (declaration_list -> declaration .)
+    CABECERA        reduce using rule 3 (declaration_list -> declaration .)
+    ID              reduce using rule 3 (declaration_list -> declaration .)
+    MULTIPLICA      reduce using rule 3 (declaration_list -> declaration .)
+    COMA            reduce using rule 3 (declaration_list -> declaration .)
+    $end            reduce using rule 3 (declaration_list -> declaration .)
+
+
+state 10
+
+    (4) declaration -> var_declaration .
+
+    SUB             reduce using rule 4 (declaration -> var_declaration .)
+    PRINT           reduce using rule 4 (declaration -> var_declaration .)
+    CHOP            reduce using rule 4 (declaration -> var_declaration .)
+    CABECERA        reduce using rule 4 (declaration -> var_declaration .)
+    ID              reduce using rule 4 (declaration -> var_declaration .)
+    MULTIPLICA      reduce using rule 4 (declaration -> var_declaration .)
+    COMA            reduce using rule 4 (declaration -> var_declaration .)
+    $end            reduce using rule 4 (declaration -> var_declaration .)
+
+
+state 11
+
+    (27) fun_execute -> CHOP . expression SEMICOLON
+    (56) expression -> . var IGUAL expression
+    (57) expression -> . simple_expression
+    (58) expression -> . var IGUAL AMPERSANT ID
+    (59) var -> . ID
+    (60) var -> . TEXTO
+    (61) var -> . ID LBRACKET expression RBRACKET
+    (62) simple_expression -> . additive_expression relop additive_expression
+    (63) simple_expression -> . additive_expression
+    (92) additive_expression -> . additive_expression addop term
+    (93) additive_expression -> . additive_expression addop additive_expression
+    (94) additive_expression -> . term
+    (95) additive_expression -> . term RESTARESTA
+    (96) additive_expression -> . term SUMASUMA
+    (97) additive_expression -> . term MULTIPLICAIGUAL
+    (98) additive_expression -> . term RESTAIGUAL
+    (99) additive_expression -> . term MULTIPLICAMULTIPLICA
+    (102) term -> . term mulop factor
+    (103) term -> . factor
+    (106) factor -> . LPAREN expression RPAREN
+    (107) factor -> . var
+    (108) factor -> . call
+    (109) factor -> . NUMERO
+    (110) call -> . ID LPAREN args RPAREN
+
+    ID              shift and go to state 25
+    TEXTO           shift and go to state 23
+    LPAREN          shift and go to state 27
+    NUMERO          shift and go to state 17
+
+    call                           shift and go to state 24
+    expression                     shift and go to state 32
+    term                           shift and go to state 26
+    var                            shift and go to state 18
+    factor                         shift and go to state 19
+    additive_expression            shift and go to state 22
+    simple_expression              shift and go to state 21
+
+state 12
+
+    (11) var_declaration3 -> ID . COMA var_declaration2
+    (12) var_declaration3 -> ID .
+    (13) var_declaration3 -> ID . IGUAL NUMERO COMA var_declaration2
+    (14) var_declaration3 -> ID . IGUAL NUMERO
+    (15) var_declaration3 -> ID . IGUAL TEXTO COMA var_declaration2
+    (16) var_declaration3 -> ID . IGUAL TEXTO
+    (17) var_declaration3 -> ID . IGUAL simple_expression
+    (20) var_declaration3 -> ID . IGUAL ID COMA var_declaration2
+    (21) var_declaration3 -> ID . IGUAL ID
+
+    COMA            shift and go to state 33
+    SEMICOLON       reduce using rule 12 (var_declaration3 -> ID .)
+    IGUAL           shift and go to state 34
+
+
+state 13
+
+    (8) header_declaration -> CABECERA .
+
+    SUB             reduce using rule 8 (header_declaration -> CABECERA .)
+    PRINT           reduce using rule 8 (header_declaration -> CABECERA .)
+    CHOP            reduce using rule 8 (header_declaration -> CABECERA .)
+    CABECERA        reduce using rule 8 (header_declaration -> CABECERA .)
+    ID              reduce using rule 8 (header_declaration -> CABECERA .)
+    MULTIPLICA      reduce using rule 8 (header_declaration -> CABECERA .)
+    COMA            reduce using rule 8 (header_declaration -> CABECERA .)
+    $end            reduce using rule 8 (header_declaration -> CABECERA .)
+    RBLOCK          reduce using rule 8 (header_declaration -> CABECERA .)
+
+
+state 14
+
+    (5) declaration -> fun_declaration .
+
+    SUB             reduce using rule 5 (declaration -> fun_declaration .)
+    PRINT           reduce using rule 5 (declaration -> fun_declaration .)
+    CHOP            reduce using rule 5 (declaration -> fun_declaration .)
+    CABECERA        reduce using rule 5 (declaration -> fun_declaration .)
+    ID              reduce using rule 5 (declaration -> fun_declaration .)
+    MULTIPLICA      reduce using rule 5 (declaration -> fun_declaration .)
+    COMA            reduce using rule 5 (declaration -> fun_declaration .)
+    $end            reduce using rule 5 (declaration -> fun_declaration .)
+
+
+state 15
+
+    (7) declaration -> header_declaration .
+
+    SUB             reduce using rule 7 (declaration -> header_declaration .)
+    PRINT           reduce using rule 7 (declaration -> header_declaration .)
+    CHOP            reduce using rule 7 (declaration -> header_declaration .)
+    CABECERA        reduce using rule 7 (declaration -> header_declaration .)
+    ID              reduce using rule 7 (declaration -> header_declaration .)
+    MULTIPLICA      reduce using rule 7 (declaration -> header_declaration .)
+    COMA            reduce using rule 7 (declaration -> header_declaration .)
+    $end            reduce using rule 7 (declaration -> header_declaration .)
+
+
+state 16
+
+    (2) declaration_list -> declaration_list declaration .
+
+    SUB             reduce using rule 2 (declaration_list -> declaration_list declaration .)
+    PRINT           reduce using rule 2 (declaration_list -> declaration_list declaration .)
+    CHOP            reduce using rule 2 (declaration_list -> declaration_list declaration .)
+    CABECERA        reduce using rule 2 (declaration_list -> declaration_list declaration .)
+    ID              reduce using rule 2 (declaration_list -> declaration_list declaration .)
+    MULTIPLICA      reduce using rule 2 (declaration_list -> declaration_list declaration .)
+    COMA            reduce using rule 2 (declaration_list -> declaration_list declaration .)
+    $end            reduce using rule 2 (declaration_list -> declaration_list declaration .)
+
+
+state 17
+
+    (109) factor -> NUMERO .
+
+    RESTARESTA      reduce using rule 109 (factor -> NUMERO .)
+    SUMASUMA        reduce using rule 109 (factor -> NUMERO .)
+    MULTIPLICAIGUAL reduce using rule 109 (factor -> NUMERO .)
+    RESTAIGUAL      reduce using rule 109 (factor -> NUMERO .)
+    MULTIPLICAMULTIPLICA reduce using rule 109 (factor -> NUMERO .)
+    MULTIPLICA      reduce using rule 109 (factor -> NUMERO .)
+    DIVIDE          reduce using rule 109 (factor -> NUMERO .)
+    MENOR           reduce using rule 109 (factor -> NUMERO .)
+    MENORIGUAL      reduce using rule 109 (factor -> NUMERO .)
+    MAYOR           reduce using rule 109 (factor -> NUMERO .)
+    MAYORIGUAL      reduce using rule 109 (factor -> NUMERO .)
+    IGUAL           reduce using rule 109 (factor -> NUMERO .)
+    DIFERENTE       reduce using rule 109 (factor -> NUMERO .)
+    MENORIGUALMAYOR reduce using rule 109 (factor -> NUMERO .)
+    DIFERENTEIGUAL  reduce using rule 109 (factor -> NUMERO .)
+    AMPERSANTAMPERSANT reduce using rule 109 (factor -> NUMERO .)
+    XOR             reduce using rule 109 (factor -> NUMERO .)
+    AND             reduce using rule 109 (factor -> NUMERO .)
+    OR              reduce using rule 109 (factor -> NUMERO .)
+    NOT             reduce using rule 109 (factor -> NUMERO .)
+    IGUALIGUAL      reduce using rule 109 (factor -> NUMERO .)
+    RESTAMAYOR      reduce using rule 109 (factor -> NUMERO .)
+    MAYORMAYOR      reduce using rule 109 (factor -> NUMERO .)
+    MENORMENOR      reduce using rule 109 (factor -> NUMERO .)
+    X               reduce using rule 109 (factor -> NUMERO .)
+    LE              reduce using rule 109 (factor -> NUMERO .)
+    LT              reduce using rule 109 (factor -> NUMERO .)
+    GT              reduce using rule 109 (factor -> NUMERO .)
+    EQ              reduce using rule 109 (factor -> NUMERO .)
+    IGUALCOMPLEMENTO reduce using rule 109 (factor -> NUMERO .)
+    DIFERENTECOMPLEMENTO reduce using rule 109 (factor -> NUMERO .)
+    PORCENTAJE      reduce using rule 109 (factor -> NUMERO .)
+    PUNTOPUNTOPUNTO reduce using rule 109 (factor -> NUMERO .)
+    IGUALMAYOR      reduce using rule 109 (factor -> NUMERO .)
+    PLECAPLECA      reduce using rule 109 (factor -> NUMERO .)
+    SUMA            reduce using rule 109 (factor -> NUMERO .)
+    RESTA           reduce using rule 109 (factor -> NUMERO .)
+    SEMICOLON       reduce using rule 109 (factor -> NUMERO .)
+    COMA            reduce using rule 109 (factor -> NUMERO .)
+    RPAREN          reduce using rule 109 (factor -> NUMERO .)
+    RBRACKET        reduce using rule 109 (factor -> NUMERO .)
+
+
+state 18
+
+    (56) expression -> var . IGUAL expression
+    (58) expression -> var . IGUAL AMPERSANT ID
+    (107) factor -> var .
+
+  ! shift/reduce conflict for IGUAL resolved as shift
+    IGUAL           shift and go to state 35
+    RESTARESTA      reduce using rule 107 (factor -> var .)
+    SUMASUMA        reduce using rule 107 (factor -> var .)
+    MULTIPLICAIGUAL reduce using rule 107 (factor -> var .)
+    RESTAIGUAL      reduce using rule 107 (factor -> var .)
+    MULTIPLICAMULTIPLICA reduce using rule 107 (factor -> var .)
+    MULTIPLICA      reduce using rule 107 (factor -> var .)
+    DIVIDE          reduce using rule 107 (factor -> var .)
+    MENOR           reduce using rule 107 (factor -> var .)
+    MENORIGUAL      reduce using rule 107 (factor -> var .)
+    MAYOR           reduce using rule 107 (factor -> var .)
+    MAYORIGUAL      reduce using rule 107 (factor -> var .)
+    DIFERENTE       reduce using rule 107 (factor -> var .)
+    MENORIGUALMAYOR reduce using rule 107 (factor -> var .)
+    DIFERENTEIGUAL  reduce using rule 107 (factor -> var .)
+    AMPERSANTAMPERSANT reduce using rule 107 (factor -> var .)
+    XOR             reduce using rule 107 (factor -> var .)
+    AND             reduce using rule 107 (factor -> var .)
+    OR              reduce using rule 107 (factor -> var .)
+    NOT             reduce using rule 107 (factor -> var .)
+    IGUALIGUAL      reduce using rule 107 (factor -> var .)
+    RESTAMAYOR      reduce using rule 107 (factor -> var .)
+    MAYORMAYOR      reduce using rule 107 (factor -> var .)
+    MENORMENOR      reduce using rule 107 (factor -> var .)
+    X               reduce using rule 107 (factor -> var .)
+    LE              reduce using rule 107 (factor -> var .)
+    LT              reduce using rule 107 (factor -> var .)
+    GT              reduce using rule 107 (factor -> var .)
+    EQ              reduce using rule 107 (factor -> var .)
+    IGUALCOMPLEMENTO reduce using rule 107 (factor -> var .)
+    DIFERENTECOMPLEMENTO reduce using rule 107 (factor -> var .)
+    PORCENTAJE      reduce using rule 107 (factor -> var .)
+    PUNTOPUNTOPUNTO reduce using rule 107 (factor -> var .)
+    IGUALMAYOR      reduce using rule 107 (factor -> var .)
+    PLECAPLECA      reduce using rule 107 (factor -> var .)
+    SUMA            reduce using rule 107 (factor -> var .)
+    RESTA           reduce using rule 107 (factor -> var .)
+    SEMICOLON       reduce using rule 107 (factor -> var .)
+    COMA            reduce using rule 107 (factor -> var .)
+    RPAREN          reduce using rule 107 (factor -> var .)
+    RBRACKET        reduce using rule 107 (factor -> var .)
+
+  ! IGUAL           [ reduce using rule 107 (factor -> var .) ]
+
+
+state 19
+
+    (103) term -> factor .
+
+    RESTARESTA      reduce using rule 103 (term -> factor .)
+    SUMASUMA        reduce using rule 103 (term -> factor .)
+    MULTIPLICAIGUAL reduce using rule 103 (term -> factor .)
+    RESTAIGUAL      reduce using rule 103 (term -> factor .)
+    MULTIPLICAMULTIPLICA reduce using rule 103 (term -> factor .)
+    MULTIPLICA      reduce using rule 103 (term -> factor .)
+    DIVIDE          reduce using rule 103 (term -> factor .)
+    MENOR           reduce using rule 103 (term -> factor .)
+    MENORIGUAL      reduce using rule 103 (term -> factor .)
+    MAYOR           reduce using rule 103 (term -> factor .)
+    MAYORIGUAL      reduce using rule 103 (term -> factor .)
+    IGUAL           reduce using rule 103 (term -> factor .)
+    DIFERENTE       reduce using rule 103 (term -> factor .)
+    MENORIGUALMAYOR reduce using rule 103 (term -> factor .)
+    DIFERENTEIGUAL  reduce using rule 103 (term -> factor .)
+    AMPERSANTAMPERSANT reduce using rule 103 (term -> factor .)
+    XOR             reduce using rule 103 (term -> factor .)
+    AND             reduce using rule 103 (term -> factor .)
+    OR              reduce using rule 103 (term -> factor .)
+    NOT             reduce using rule 103 (term -> factor .)
+    IGUALIGUAL      reduce using rule 103 (term -> factor .)
+    RESTAMAYOR      reduce using rule 103 (term -> factor .)
+    MAYORMAYOR      reduce using rule 103 (term -> factor .)
+    MENORMENOR      reduce using rule 103 (term -> factor .)
+    X               reduce using rule 103 (term -> factor .)
+    LE              reduce using rule 103 (term -> factor .)
+    LT              reduce using rule 103 (term -> factor .)
+    GT              reduce using rule 103 (term -> factor .)
+    EQ              reduce using rule 103 (term -> factor .)
+    IGUALCOMPLEMENTO reduce using rule 103 (term -> factor .)
+    DIFERENTECOMPLEMENTO reduce using rule 103 (term -> factor .)
+    PORCENTAJE      reduce using rule 103 (term -> factor .)
+    PUNTOPUNTOPUNTO reduce using rule 103 (term -> factor .)
+    IGUALMAYOR      reduce using rule 103 (term -> factor .)
+    PLECAPLECA      reduce using rule 103 (term -> factor .)
+    SUMA            reduce using rule 103 (term -> factor .)
+    RESTA           reduce using rule 103 (term -> factor .)
+    SEMICOLON       reduce using rule 103 (term -> factor .)
+    COMA            reduce using rule 103 (term -> factor .)
+    RPAREN          reduce using rule 103 (term -> factor .)
+    RBRACKET        reduce using rule 103 (term -> factor .)
+
+
+state 20
+
+    (25) fun_execute -> PRINT expression . SEMICOLON
+    (26) fun_execute -> PRINT expression . COMA expression SEMICOLON
+
+    SEMICOLON       shift and go to state 37
+    COMA            shift and go to state 36
+
+
+state 21
+
+    (57) expression -> simple_expression .
+
+    RBRACKET        reduce using rule 57 (expression -> simple_expression .)
+    SEMICOLON       reduce using rule 57 (expression -> simple_expression .)
+    COMA            reduce using rule 57 (expression -> simple_expression .)
+    RPAREN          reduce using rule 57 (expression -> simple_expression .)
+
+
+state 22
+
+    (62) simple_expression -> additive_expression . relop additive_expression
+    (63) simple_expression -> additive_expression .
+    (92) additive_expression -> additive_expression . addop term
+    (93) additive_expression -> additive_expression . addop additive_expression
+    (64) relop -> . MENOR
+    (65) relop -> . MENORIGUAL
+    (66) relop -> . MAYOR
+    (67) relop -> . MAYORIGUAL
+    (68) relop -> . IGUAL
+    (69) relop -> . DIFERENTE
+    (70) relop -> . MENORIGUALMAYOR
+    (71) relop -> . DIFERENTEIGUAL
+    (72) relop -> . AMPERSANTAMPERSANT
+    (73) relop -> . XOR
+    (74) relop -> . AND
+    (75) relop -> . OR
+    (76) relop -> . NOT
+    (77) relop -> . IGUALIGUAL
+    (78) relop -> . RESTAMAYOR
+    (79) relop -> . MAYORMAYOR
+    (80) relop -> . MENORMENOR
+    (81) relop -> . X
+    (82) relop -> . LE
+    (83) relop -> . LT
+    (84) relop -> . GT
+    (85) relop -> . EQ
+    (86) relop -> . IGUALCOMPLEMENTO
+    (87) relop -> . DIFERENTECOMPLEMENTO
+    (88) relop -> . PORCENTAJE
+    (89) relop -> . PUNTOPUNTOPUNTO
+    (90) relop -> . IGUALMAYOR
+    (91) relop -> . PLECAPLECA
+    (100) addop -> . SUMA
+    (101) addop -> . RESTA
+
+    SEMICOLON       reduce using rule 63 (simple_expression -> additive_expression .)
+    COMA            reduce using rule 63 (simple_expression -> additive_expression .)
+    RPAREN          reduce using rule 63 (simple_expression -> additive_expression .)
+    RBRACKET        reduce using rule 63 (simple_expression -> additive_expression .)
+    MENOR           shift and go to state 56
+    MENORIGUAL      shift and go to state 46
+    MAYOR           shift and go to state 45
+    MAYORIGUAL      shift and go to state 64
+    IGUAL           shift and go to state 42
+    DIFERENTE       shift and go to state 59
+    MENORIGUALMAYOR shift and go to state 58
+    DIFERENTEIGUAL  shift and go to state 40
+    AMPERSANTAMPERSANT shift and go to state 63
+    XOR             shift and go to state 60
+    AND             shift and go to state 69
+    OR              shift and go to state 51
+    NOT             shift and go to state 61
+    IGUALIGUAL      shift and go to state 50
+    RESTAMAYOR      shift and go to state 49
+    MAYORMAYOR      shift and go to state 67
+    MENORMENOR      shift and go to state 57
+    X               shift and go to state 53
+    LE              shift and go to state 43
+    LT              shift and go to state 47
+    GT              shift and go to state 39
+    EQ              shift and go to state 48
+    IGUALCOMPLEMENTO shift and go to state 62
+    DIFERENTECOMPLEMENTO shift and go to state 65
+    PORCENTAJE      shift and go to state 68
+    PUNTOPUNTOPUNTO shift and go to state 55
+    IGUALMAYOR      shift and go to state 52
+    PLECAPLECA      shift and go to state 66
+    SUMA            shift and go to state 38
+    RESTA           shift and go to state 41
+
+    relop                          shift and go to state 44
+    addop                          shift and go to state 54
+
+state 23
+
+    (60) var -> TEXTO .
+
+    IGUAL           reduce using rule 60 (var -> TEXTO .)
+    RESTARESTA      reduce using rule 60 (var -> TEXTO .)
+    SUMASUMA        reduce using rule 60 (var -> TEXTO .)
+    MULTIPLICAIGUAL reduce using rule 60 (var -> TEXTO .)
+    RESTAIGUAL      reduce using rule 60 (var -> TEXTO .)
+    MULTIPLICAMULTIPLICA reduce using rule 60 (var -> TEXTO .)
+    MULTIPLICA      reduce using rule 60 (var -> TEXTO .)
+    DIVIDE          reduce using rule 60 (var -> TEXTO .)
+    MENOR           reduce using rule 60 (var -> TEXTO .)
+    MENORIGUAL      reduce using rule 60 (var -> TEXTO .)
+    MAYOR           reduce using rule 60 (var -> TEXTO .)
+    MAYORIGUAL      reduce using rule 60 (var -> TEXTO .)
+    DIFERENTE       reduce using rule 60 (var -> TEXTO .)
+    MENORIGUALMAYOR reduce using rule 60 (var -> TEXTO .)
+    DIFERENTEIGUAL  reduce using rule 60 (var -> TEXTO .)
+    AMPERSANTAMPERSANT reduce using rule 60 (var -> TEXTO .)
+    XOR             reduce using rule 60 (var -> TEXTO .)
+    AND             reduce using rule 60 (var -> TEXTO .)
+    OR              reduce using rule 60 (var -> TEXTO .)
+    NOT             reduce using rule 60 (var -> TEXTO .)
+    IGUALIGUAL      reduce using rule 60 (var -> TEXTO .)
+    RESTAMAYOR      reduce using rule 60 (var -> TEXTO .)
+    MAYORMAYOR      reduce using rule 60 (var -> TEXTO .)
+    MENORMENOR      reduce using rule 60 (var -> TEXTO .)
+    X               reduce using rule 60 (var -> TEXTO .)
+    LE              reduce using rule 60 (var -> TEXTO .)
+    LT              reduce using rule 60 (var -> TEXTO .)
+    GT              reduce using rule 60 (var -> TEXTO .)
+    EQ              reduce using rule 60 (var -> TEXTO .)
+    IGUALCOMPLEMENTO reduce using rule 60 (var -> TEXTO .)
+    DIFERENTECOMPLEMENTO reduce using rule 60 (var -> TEXTO .)
+    PORCENTAJE      reduce using rule 60 (var -> TEXTO .)
+    PUNTOPUNTOPUNTO reduce using rule 60 (var -> TEXTO .)
+    IGUALMAYOR      reduce using rule 60 (var -> TEXTO .)
+    PLECAPLECA      reduce using rule 60 (var -> TEXTO .)
+    SUMA            reduce using rule 60 (var -> TEXTO .)
+    RESTA           reduce using rule 60 (var -> TEXTO .)
+    SEMICOLON       reduce using rule 60 (var -> TEXTO .)
+    COMA            reduce using rule 60 (var -> TEXTO .)
+    RBRACKET        reduce using rule 60 (var -> TEXTO .)
+    RPAREN          reduce using rule 60 (var -> TEXTO .)
+
+
+state 24
+
+    (108) factor -> call .
+
+    RESTARESTA      reduce using rule 108 (factor -> call .)
+    SUMASUMA        reduce using rule 108 (factor -> call .)
+    MULTIPLICAIGUAL reduce using rule 108 (factor -> call .)
+    RESTAIGUAL      reduce using rule 108 (factor -> call .)
+    MULTIPLICAMULTIPLICA reduce using rule 108 (factor -> call .)
+    MULTIPLICA      reduce using rule 108 (factor -> call .)
+    DIVIDE          reduce using rule 108 (factor -> call .)
+    MENOR           reduce using rule 108 (factor -> call .)
+    MENORIGUAL      reduce using rule 108 (factor -> call .)
+    MAYOR           reduce using rule 108 (factor -> call .)
+    MAYORIGUAL      reduce using rule 108 (factor -> call .)
+    IGUAL           reduce using rule 108 (factor -> call .)
+    DIFERENTE       reduce using rule 108 (factor -> call .)
+    MENORIGUALMAYOR reduce using rule 108 (factor -> call .)
+    DIFERENTEIGUAL  reduce using rule 108 (factor -> call .)
+    AMPERSANTAMPERSANT reduce using rule 108 (factor -> call .)
+    XOR             reduce using rule 108 (factor -> call .)
+    AND             reduce using rule 108 (factor -> call .)
+    OR              reduce using rule 108 (factor -> call .)
+    NOT             reduce using rule 108 (factor -> call .)
+    IGUALIGUAL      reduce using rule 108 (factor -> call .)
+    RESTAMAYOR      reduce using rule 108 (factor -> call .)
+    MAYORMAYOR      reduce using rule 108 (factor -> call .)
+    MENORMENOR      reduce using rule 108 (factor -> call .)
+    X               reduce using rule 108 (factor -> call .)
+    LE              reduce using rule 108 (factor -> call .)
+    LT              reduce using rule 108 (factor -> call .)
+    GT              reduce using rule 108 (factor -> call .)
+    EQ              reduce using rule 108 (factor -> call .)
+    IGUALCOMPLEMENTO reduce using rule 108 (factor -> call .)
+    DIFERENTECOMPLEMENTO reduce using rule 108 (factor -> call .)
+    PORCENTAJE      reduce using rule 108 (factor -> call .)
+    PUNTOPUNTOPUNTO reduce using rule 108 (factor -> call .)
+    IGUALMAYOR      reduce using rule 108 (factor -> call .)
+    PLECAPLECA      reduce using rule 108 (factor -> call .)
+    SUMA            reduce using rule 108 (factor -> call .)
+    RESTA           reduce using rule 108 (factor -> call .)
+    SEMICOLON       reduce using rule 108 (factor -> call .)
+    COMA            reduce using rule 108 (factor -> call .)
+    RPAREN          reduce using rule 108 (factor -> call .)
+    RBRACKET        reduce using rule 108 (factor -> call .)
+
+
+state 25
+
+    (59) var -> ID .
+    (61) var -> ID . LBRACKET expression RBRACKET
+    (110) call -> ID . LPAREN args RPAREN
+
+    IGUAL           reduce using rule 59 (var -> ID .)
+    RESTARESTA      reduce using rule 59 (var -> ID .)
+    SUMASUMA        reduce using rule 59 (var -> ID .)
+    MULTIPLICAIGUAL reduce using rule 59 (var -> ID .)
+    RESTAIGUAL      reduce using rule 59 (var -> ID .)
+    MULTIPLICAMULTIPLICA reduce using rule 59 (var -> ID .)
+    MULTIPLICA      reduce using rule 59 (var -> ID .)
+    DIVIDE          reduce using rule 59 (var -> ID .)
+    MENOR           reduce using rule 59 (var -> ID .)
+    MENORIGUAL      reduce using rule 59 (var -> ID .)
+    MAYOR           reduce using rule 59 (var -> ID .)
+    MAYORIGUAL      reduce using rule 59 (var -> ID .)
+    DIFERENTE       reduce using rule 59 (var -> ID .)
+    MENORIGUALMAYOR reduce using rule 59 (var -> ID .)
+    DIFERENTEIGUAL  reduce using rule 59 (var -> ID .)
+    AMPERSANTAMPERSANT reduce using rule 59 (var -> ID .)
+    XOR             reduce using rule 59 (var -> ID .)
+    AND             reduce using rule 59 (var -> ID .)
+    OR              reduce using rule 59 (var -> ID .)
+    NOT             reduce using rule 59 (var -> ID .)
+    IGUALIGUAL      reduce using rule 59 (var -> ID .)
+    RESTAMAYOR      reduce using rule 59 (var -> ID .)
+    MAYORMAYOR      reduce using rule 59 (var -> ID .)
+    MENORMENOR      reduce using rule 59 (var -> ID .)
+    X               reduce using rule 59 (var -> ID .)
+    LE              reduce using rule 59 (var -> ID .)
+    LT              reduce using rule 59 (var -> ID .)
+    GT              reduce using rule 59 (var -> ID .)
+    EQ              reduce using rule 59 (var -> ID .)
+    IGUALCOMPLEMENTO reduce using rule 59 (var -> ID .)
+    DIFERENTECOMPLEMENTO reduce using rule 59 (var -> ID .)
+    PORCENTAJE      reduce using rule 59 (var -> ID .)
+    PUNTOPUNTOPUNTO reduce using rule 59 (var -> ID .)
+    IGUALMAYOR      reduce using rule 59 (var -> ID .)
+    PLECAPLECA      reduce using rule 59 (var -> ID .)
+    SUMA            reduce using rule 59 (var -> ID .)
+    RESTA           reduce using rule 59 (var -> ID .)
+    SEMICOLON       reduce using rule 59 (var -> ID .)
+    COMA            reduce using rule 59 (var -> ID .)
+    RBRACKET        reduce using rule 59 (var -> ID .)
+    RPAREN          reduce using rule 59 (var -> ID .)
+    LBRACKET        shift and go to state 71
+    LPAREN          shift and go to state 70
+
+
+state 26
+
+    (94) additive_expression -> term .
+    (95) additive_expression -> term . RESTARESTA
+    (96) additive_expression -> term . SUMASUMA
+    (97) additive_expression -> term . MULTIPLICAIGUAL
+    (98) additive_expression -> term . RESTAIGUAL
+    (99) additive_expression -> term . MULTIPLICAMULTIPLICA
+    (102) term -> term . mulop factor
+    (104) mulop -> . MULTIPLICA
+    (105) mulop -> . DIVIDE
+
+    MENOR           reduce using rule 94 (additive_expression -> term .)
+    MENORIGUAL      reduce using rule 94 (additive_expression -> term .)
+    MAYOR           reduce using rule 94 (additive_expression -> term .)
+    MAYORIGUAL      reduce using rule 94 (additive_expression -> term .)
+    IGUAL           reduce using rule 94 (additive_expression -> term .)
+    DIFERENTE       reduce using rule 94 (additive_expression -> term .)
+    MENORIGUALMAYOR reduce using rule 94 (additive_expression -> term .)
+    DIFERENTEIGUAL  reduce using rule 94 (additive_expression -> term .)
+    AMPERSANTAMPERSANT reduce using rule 94 (additive_expression -> term .)
+    XOR             reduce using rule 94 (additive_expression -> term .)
+    AND             reduce using rule 94 (additive_expression -> term .)
+    OR              reduce using rule 94 (additive_expression -> term .)
+    NOT             reduce using rule 94 (additive_expression -> term .)
+    IGUALIGUAL      reduce using rule 94 (additive_expression -> term .)
+    RESTAMAYOR      reduce using rule 94 (additive_expression -> term .)
+    MAYORMAYOR      reduce using rule 94 (additive_expression -> term .)
+    MENORMENOR      reduce using rule 94 (additive_expression -> term .)
+    X               reduce using rule 94 (additive_expression -> term .)
+    LE              reduce using rule 94 (additive_expression -> term .)
+    LT              reduce using rule 94 (additive_expression -> term .)
+    GT              reduce using rule 94 (additive_expression -> term .)
+    EQ              reduce using rule 94 (additive_expression -> term .)
+    IGUALCOMPLEMENTO reduce using rule 94 (additive_expression -> term .)
+    DIFERENTECOMPLEMENTO reduce using rule 94 (additive_expression -> term .)
+    PORCENTAJE      reduce using rule 94 (additive_expression -> term .)
+    PUNTOPUNTOPUNTO reduce using rule 94 (additive_expression -> term .)
+    IGUALMAYOR      reduce using rule 94 (additive_expression -> term .)
+    PLECAPLECA      reduce using rule 94 (additive_expression -> term .)
+    SUMA            reduce using rule 94 (additive_expression -> term .)
+    RESTA           reduce using rule 94 (additive_expression -> term .)
+    SEMICOLON       reduce using rule 94 (additive_expression -> term .)
+    COMA            reduce using rule 94 (additive_expression -> term .)
+    RPAREN          reduce using rule 94 (additive_expression -> term .)
+    RBRACKET        reduce using rule 94 (additive_expression -> term .)
+    RESTARESTA      shift and go to state 75
+    SUMASUMA        shift and go to state 77
+    MULTIPLICAIGUAL shift and go to state 79
+    RESTAIGUAL      shift and go to state 78
+    MULTIPLICAMULTIPLICA shift and go to state 76
+    MULTIPLICA      shift and go to state 72
+    DIVIDE          shift and go to state 74
+
+    mulop                          shift and go to state 73
+
+state 27
+
+    (106) factor -> LPAREN . expression RPAREN
+    (56) expression -> . var IGUAL expression
+    (57) expression -> . simple_expression
+    (58) expression -> . var IGUAL AMPERSANT ID
+    (59) var -> . ID
+    (60) var -> . TEXTO
+    (61) var -> . ID LBRACKET expression RBRACKET
+    (62) simple_expression -> . additive_expression relop additive_expression
+    (63) simple_expression -> . additive_expression
+    (92) additive_expression -> . additive_expression addop term
+    (93) additive_expression -> . additive_expression addop additive_expression
+    (94) additive_expression -> . term
+    (95) additive_expression -> . term RESTARESTA
+    (96) additive_expression -> . term SUMASUMA
+    (97) additive_expression -> . term MULTIPLICAIGUAL
+    (98) additive_expression -> . term RESTAIGUAL
+    (99) additive_expression -> . term MULTIPLICAMULTIPLICA
+    (102) term -> . term mulop factor
+    (103) term -> . factor
+    (106) factor -> . LPAREN expression RPAREN
+    (107) factor -> . var
+    (108) factor -> . call
+    (109) factor -> . NUMERO
+    (110) call -> . ID LPAREN args RPAREN
+
+    ID              shift and go to state 25
+    TEXTO           shift and go to state 23
+    LPAREN          shift and go to state 27
+    NUMERO          shift and go to state 17
+
+    call                           shift and go to state 24
+    expression                     shift and go to state 80
+    term                           shift and go to state 26
+    var                            shift and go to state 18
+    factor                         shift and go to state 19
+    additive_expression            shift and go to state 22
+    simple_expression              shift and go to state 21
+
+state 28
+
+    (28) fun_declaration -> SUB IDF . LBLOCK compount_stmt RBLOCK
+
+    LBLOCK          shift and go to state 81
+
+
+state 29
+
+    (23) var_declaration3 -> MULTIPLICA MULTIPLICA . ID
+    (24) var_declaration3 -> MULTIPLICA MULTIPLICA . ID COMA var_declaration2
+
+    ID              shift and go to state 82
+
+
+state 30
+
+    (18) var_declaration3 -> MULTIPLICA ID . COMA var_declaration2
+    (19) var_declaration3 -> MULTIPLICA ID .
+
+    COMA            shift and go to state 83
+    SEMICOLON       reduce using rule 19 (var_declaration3 -> MULTIPLICA ID .)
+
+
+state 31
+
+    (9) var_declaration -> var_declaration3 SEMICOLON .
+
+    RBLOCK          reduce using rule 9 (var_declaration -> var_declaration3 SEMICOLON .)
+    SUB             reduce using rule 9 (var_declaration -> var_declaration3 SEMICOLON .)
+    PRINT           reduce using rule 9 (var_declaration -> var_declaration3 SEMICOLON .)
+    CHOP            reduce using rule 9 (var_declaration -> var_declaration3 SEMICOLON .)
+    CABECERA        reduce using rule 9 (var_declaration -> var_declaration3 SEMICOLON .)
+    ID              reduce using rule 9 (var_declaration -> var_declaration3 SEMICOLON .)
+    MULTIPLICA      reduce using rule 9 (var_declaration -> var_declaration3 SEMICOLON .)
+    COMA            reduce using rule 9 (var_declaration -> var_declaration3 SEMICOLON .)
+    $end            reduce using rule 9 (var_declaration -> var_declaration3 SEMICOLON .)
+
+
+state 32
+
+    (27) fun_execute -> CHOP expression . SEMICOLON
+
+    SEMICOLON       shift and go to state 84
+
+
+state 33
+
+    (11) var_declaration3 -> ID COMA . var_declaration2
+    (10) var_declaration2 -> . ID LBRACKET NUMERO RBRACKET SEMICOLON
+
+    ID              shift and go to state 86
+
+    var_declaration2               shift and go to state 85
+
+state 34
+
+    (13) var_declaration3 -> ID IGUAL . NUMERO COMA var_declaration2
+    (14) var_declaration3 -> ID IGUAL . NUMERO
+    (15) var_declaration3 -> ID IGUAL . TEXTO COMA var_declaration2
+    (16) var_declaration3 -> ID IGUAL . TEXTO
+    (17) var_declaration3 -> ID IGUAL . simple_expression
+    (20) var_declaration3 -> ID IGUAL . ID COMA var_declaration2
+    (21) var_declaration3 -> ID IGUAL . ID
+    (62) simple_expression -> . additive_expression relop additive_expression
+    (63) simple_expression -> . additive_expression
+    (92) additive_expression -> . additive_expression addop term
+    (93) additive_expression -> . additive_expression addop additive_expression
+    (94) additive_expression -> . term
+    (95) additive_expression -> . term RESTARESTA
+    (96) additive_expression -> . term SUMASUMA
+    (97) additive_expression -> . term MULTIPLICAIGUAL
+    (98) additive_expression -> . term RESTAIGUAL
+    (99) additive_expression -> . term MULTIPLICAMULTIPLICA
+    (102) term -> . term mulop factor
+    (103) term -> . factor
+    (106) factor -> . LPAREN expression RPAREN
+    (107) factor -> . var
+    (108) factor -> . call
+    (109) factor -> . NUMERO
+    (59) var -> . ID
+    (60) var -> . TEXTO
+    (61) var -> . ID LBRACKET expression RBRACKET
+    (110) call -> . ID LPAREN args RPAREN
+
+    NUMERO          shift and go to state 87
+    TEXTO           shift and go to state 90
+    ID              shift and go to state 91
+    LPAREN          shift and go to state 27
+
+    var                            shift and go to state 88
+    additive_expression            shift and go to state 22
+    factor                         shift and go to state 19
+    term                           shift and go to state 26
+    simple_expression              shift and go to state 89
+    call                           shift and go to state 24
+
+state 35
+
+    (56) expression -> var IGUAL . expression
+    (58) expression -> var IGUAL . AMPERSANT ID
+    (56) expression -> . var IGUAL expression
+    (57) expression -> . simple_expression
+    (58) expression -> . var IGUAL AMPERSANT ID
+    (59) var -> . ID
+    (60) var -> . TEXTO
+    (61) var -> . ID LBRACKET expression RBRACKET
+    (62) simple_expression -> . additive_expression relop additive_expression
+    (63) simple_expression -> . additive_expression
+    (92) additive_expression -> . additive_expression addop term
+    (93) additive_expression -> . additive_expression addop additive_expression
+    (94) additive_expression -> . term
+    (95) additive_expression -> . term RESTARESTA
+    (96) additive_expression -> . term SUMASUMA
+    (97) additive_expression -> . term MULTIPLICAIGUAL
+    (98) additive_expression -> . term RESTAIGUAL
+    (99) additive_expression -> . term MULTIPLICAMULTIPLICA
+    (102) term -> . term mulop factor
+    (103) term -> . factor
+    (106) factor -> . LPAREN expression RPAREN
+    (107) factor -> . var
+    (108) factor -> . call
+    (109) factor -> . NUMERO
+    (110) call -> . ID LPAREN args RPAREN
+
+    AMPERSANT       shift and go to state 92
+    ID              shift and go to state 25
+    TEXTO           shift and go to state 23
+    LPAREN          shift and go to state 27
+    NUMERO          shift and go to state 17
+
+    expression                     shift and go to state 93
+    var                            shift and go to state 18
+    term                           shift and go to state 26
+    call                           shift and go to state 24
+    factor                         shift and go to state 19
+    additive_expression            shift and go to state 22
+    simple_expression              shift and go to state 21
+
+state 36
+
+    (26) fun_execute -> PRINT expression COMA . expression SEMICOLON
+    (56) expression -> . var IGUAL expression
+    (57) expression -> . simple_expression
+    (58) expression -> . var IGUAL AMPERSANT ID
+    (59) var -> . ID
+    (60) var -> . TEXTO
+    (61) var -> . ID LBRACKET expression RBRACKET
+    (62) simple_expression -> . additive_expression relop additive_expression
+    (63) simple_expression -> . additive_expression
+    (92) additive_expression -> . additive_expression addop term
+    (93) additive_expression -> . additive_expression addop additive_expression
+    (94) additive_expression -> . term
+    (95) additive_expression -> . term RESTARESTA
+    (96) additive_expression -> . term SUMASUMA
+    (97) additive_expression -> . term MULTIPLICAIGUAL
+    (98) additive_expression -> . term RESTAIGUAL
+    (99) additive_expression -> . term MULTIPLICAMULTIPLICA
+    (102) term -> . term mulop factor
+    (103) term -> . factor
+    (106) factor -> . LPAREN expression RPAREN
+    (107) factor -> . var
+    (108) factor -> . call
+    (109) factor -> . NUMERO
+    (110) call -> . ID LPAREN args RPAREN
+
+    ID              shift and go to state 25
+    TEXTO           shift and go to state 23
+    LPAREN          shift and go to state 27
+    NUMERO          shift and go to state 17
+
+    call                           shift and go to state 24
+    expression                     shift and go to state 94
+    term                           shift and go to state 26
+    var                            shift and go to state 18
+    factor                         shift and go to state 19
+    additive_expression            shift and go to state 22
+    simple_expression              shift and go to state 21
+
+state 37
+
+    (25) fun_execute -> PRINT expression SEMICOLON .
+
+    SUB             reduce using rule 25 (fun_execute -> PRINT expression SEMICOLON .)
+    PRINT           reduce using rule 25 (fun_execute -> PRINT expression SEMICOLON .)
+    CHOP            reduce using rule 25 (fun_execute -> PRINT expression SEMICOLON .)
+    CABECERA        reduce using rule 25 (fun_execute -> PRINT expression SEMICOLON .)
+    ID              reduce using rule 25 (fun_execute -> PRINT expression SEMICOLON .)
+    MULTIPLICA      reduce using rule 25 (fun_execute -> PRINT expression SEMICOLON .)
+    COMA            reduce using rule 25 (fun_execute -> PRINT expression SEMICOLON .)
+    $end            reduce using rule 25 (fun_execute -> PRINT expression SEMICOLON .)
+    RBLOCK          reduce using rule 25 (fun_execute -> PRINT expression SEMICOLON .)
+
+
+state 38
+
+    (100) addop -> SUMA .
+
+    LPAREN          reduce using rule 100 (addop -> SUMA .)
+    NUMERO          reduce using rule 100 (addop -> SUMA .)
+    ID              reduce using rule 100 (addop -> SUMA .)
+    TEXTO           reduce using rule 100 (addop -> SUMA .)
+
+
+state 39
+
+    (84) relop -> GT .
+
+    LPAREN          reduce using rule 84 (relop -> GT .)
+    NUMERO          reduce using rule 84 (relop -> GT .)
+    ID              reduce using rule 84 (relop -> GT .)
+    TEXTO           reduce using rule 84 (relop -> GT .)
+
+
+state 40
+
+    (71) relop -> DIFERENTEIGUAL .
+
+    LPAREN          reduce using rule 71 (relop -> DIFERENTEIGUAL .)
+    NUMERO          reduce using rule 71 (relop -> DIFERENTEIGUAL .)
+    ID              reduce using rule 71 (relop -> DIFERENTEIGUAL .)
+    TEXTO           reduce using rule 71 (relop -> DIFERENTEIGUAL .)
+
+
+state 41
+
+    (101) addop -> RESTA .
+
+    LPAREN          reduce using rule 101 (addop -> RESTA .)
+    NUMERO          reduce using rule 101 (addop -> RESTA .)
+    ID              reduce using rule 101 (addop -> RESTA .)
+    TEXTO           reduce using rule 101 (addop -> RESTA .)
+
+
+state 42
+
+    (68) relop -> IGUAL .
+
+    LPAREN          reduce using rule 68 (relop -> IGUAL .)
+    NUMERO          reduce using rule 68 (relop -> IGUAL .)
+    ID              reduce using rule 68 (relop -> IGUAL .)
+    TEXTO           reduce using rule 68 (relop -> IGUAL .)
+
+
+state 43
+
+    (82) relop -> LE .
+
+    LPAREN          reduce using rule 82 (relop -> LE .)
+    NUMERO          reduce using rule 82 (relop -> LE .)
+    ID              reduce using rule 82 (relop -> LE .)
+    TEXTO           reduce using rule 82 (relop -> LE .)
+
+
+state 44
+
+    (62) simple_expression -> additive_expression relop . additive_expression
+    (92) additive_expression -> . additive_expression addop term
+    (93) additive_expression -> . additive_expression addop additive_expression
+    (94) additive_expression -> . term
+    (95) additive_expression -> . term RESTARESTA
+    (96) additive_expression -> . term SUMASUMA
+    (97) additive_expression -> . term MULTIPLICAIGUAL
+    (98) additive_expression -> . term RESTAIGUAL
+    (99) additive_expression -> . term MULTIPLICAMULTIPLICA
+    (102) term -> . term mulop factor
+    (103) term -> . factor
+    (106) factor -> . LPAREN expression RPAREN
+    (107) factor -> . var
+    (108) factor -> . call
+    (109) factor -> . NUMERO
+    (59) var -> . ID
+    (60) var -> . TEXTO
+    (61) var -> . ID LBRACKET expression RBRACKET
+    (110) call -> . ID LPAREN args RPAREN
+
+    LPAREN          shift and go to state 27
+    NUMERO          shift and go to state 17
+    ID              shift and go to state 25
+    TEXTO           shift and go to state 23
+
+    call                           shift and go to state 24
+    term                           shift and go to state 26
+    var                            shift and go to state 88
+    additive_expression            shift and go to state 95
+    factor                         shift and go to state 19
+
+state 45
+
+    (66) relop -> MAYOR .
+
+    LPAREN          reduce using rule 66 (relop -> MAYOR .)
+    NUMERO          reduce using rule 66 (relop -> MAYOR .)
+    ID              reduce using rule 66 (relop -> MAYOR .)
+    TEXTO           reduce using rule 66 (relop -> MAYOR .)
+
+
+state 46
+
+    (65) relop -> MENORIGUAL .
+
+    LPAREN          reduce using rule 65 (relop -> MENORIGUAL .)
+    NUMERO          reduce using rule 65 (relop -> MENORIGUAL .)
+    ID              reduce using rule 65 (relop -> MENORIGUAL .)
+    TEXTO           reduce using rule 65 (relop -> MENORIGUAL .)
+
+
+state 47
+
+    (83) relop -> LT .
+
+    LPAREN          reduce using rule 83 (relop -> LT .)
+    NUMERO          reduce using rule 83 (relop -> LT .)
+    ID              reduce using rule 83 (relop -> LT .)
+    TEXTO           reduce using rule 83 (relop -> LT .)
+
+
+state 48
+
+    (85) relop -> EQ .
+
+    LPAREN          reduce using rule 85 (relop -> EQ .)
+    NUMERO          reduce using rule 85 (relop -> EQ .)
+    ID              reduce using rule 85 (relop -> EQ .)
+    TEXTO           reduce using rule 85 (relop -> EQ .)
+
+
+state 49
+
+    (78) relop -> RESTAMAYOR .
+
+    LPAREN          reduce using rule 78 (relop -> RESTAMAYOR .)
+    NUMERO          reduce using rule 78 (relop -> RESTAMAYOR .)
+    ID              reduce using rule 78 (relop -> RESTAMAYOR .)
+    TEXTO           reduce using rule 78 (relop -> RESTAMAYOR .)
+
+
+state 50
+
+    (77) relop -> IGUALIGUAL .
+
+    LPAREN          reduce using rule 77 (relop -> IGUALIGUAL .)
+    NUMERO          reduce using rule 77 (relop -> IGUALIGUAL .)
+    ID              reduce using rule 77 (relop -> IGUALIGUAL .)
+    TEXTO           reduce using rule 77 (relop -> IGUALIGUAL .)
+
+
+state 51
+
+    (75) relop -> OR .
+
+    LPAREN          reduce using rule 75 (relop -> OR .)
+    NUMERO          reduce using rule 75 (relop -> OR .)
+    ID              reduce using rule 75 (relop -> OR .)
+    TEXTO           reduce using rule 75 (relop -> OR .)
+
+
+state 52
+
+    (90) relop -> IGUALMAYOR .
+
+    LPAREN          reduce using rule 90 (relop -> IGUALMAYOR .)
+    NUMERO          reduce using rule 90 (relop -> IGUALMAYOR .)
+    ID              reduce using rule 90 (relop -> IGUALMAYOR .)
+    TEXTO           reduce using rule 90 (relop -> IGUALMAYOR .)
+
+
+state 53
+
+    (81) relop -> X .
+
+    LPAREN          reduce using rule 81 (relop -> X .)
+    NUMERO          reduce using rule 81 (relop -> X .)
+    ID              reduce using rule 81 (relop -> X .)
+    TEXTO           reduce using rule 81 (relop -> X .)
+
+
+state 54
+
+    (92) additive_expression -> additive_expression addop . term
+    (93) additive_expression -> additive_expression addop . additive_expression
+    (102) term -> . term mulop factor
+    (103) term -> . factor
+    (92) additive_expression -> . additive_expression addop term
+    (93) additive_expression -> . additive_expression addop additive_expression
+    (94) additive_expression -> . term
+    (95) additive_expression -> . term RESTARESTA
+    (96) additive_expression -> . term SUMASUMA
+    (97) additive_expression -> . term MULTIPLICAIGUAL
+    (98) additive_expression -> . term RESTAIGUAL
+    (99) additive_expression -> . term MULTIPLICAMULTIPLICA
+    (106) factor -> . LPAREN expression RPAREN
+    (107) factor -> . var
+    (108) factor -> . call
+    (109) factor -> . NUMERO
+    (59) var -> . ID
+    (60) var -> . TEXTO
+    (61) var -> . ID LBRACKET expression RBRACKET
+    (110) call -> . ID LPAREN args RPAREN
+
+    LPAREN          shift and go to state 27
+    NUMERO          shift and go to state 17
+    ID              shift and go to state 25
+    TEXTO           shift and go to state 23
+
+    call                           shift and go to state 24
+    term                           shift and go to state 97
+    var                            shift and go to state 88
+    additive_expression            shift and go to state 96
+    factor                         shift and go to state 19
+
+state 55
+
+    (89) relop -> PUNTOPUNTOPUNTO .
+
+    LPAREN          reduce using rule 89 (relop -> PUNTOPUNTOPUNTO .)
+    NUMERO          reduce using rule 89 (relop -> PUNTOPUNTOPUNTO .)
+    ID              reduce using rule 89 (relop -> PUNTOPUNTOPUNTO .)
+    TEXTO           reduce using rule 89 (relop -> PUNTOPUNTOPUNTO .)
+
+
+state 56
+
+    (64) relop -> MENOR .
+
+    LPAREN          reduce using rule 64 (relop -> MENOR .)
+    NUMERO          reduce using rule 64 (relop -> MENOR .)
+    ID              reduce using rule 64 (relop -> MENOR .)
+    TEXTO           reduce using rule 64 (relop -> MENOR .)
+
+
+state 57
+
+    (80) relop -> MENORMENOR .
+
+    LPAREN          reduce using rule 80 (relop -> MENORMENOR .)
+    NUMERO          reduce using rule 80 (relop -> MENORMENOR .)
+    ID              reduce using rule 80 (relop -> MENORMENOR .)
+    TEXTO           reduce using rule 80 (relop -> MENORMENOR .)
+
+
+state 58
+
+    (70) relop -> MENORIGUALMAYOR .
+
+    LPAREN          reduce using rule 70 (relop -> MENORIGUALMAYOR .)
+    NUMERO          reduce using rule 70 (relop -> MENORIGUALMAYOR .)
+    ID              reduce using rule 70 (relop -> MENORIGUALMAYOR .)
+    TEXTO           reduce using rule 70 (relop -> MENORIGUALMAYOR .)
+
+
+state 59
+
+    (69) relop -> DIFERENTE .
+
+    LPAREN          reduce using rule 69 (relop -> DIFERENTE .)
+    NUMERO          reduce using rule 69 (relop -> DIFERENTE .)
+    ID              reduce using rule 69 (relop -> DIFERENTE .)
+    TEXTO           reduce using rule 69 (relop -> DIFERENTE .)
+
+
+state 60
+
+    (73) relop -> XOR .
+
+    LPAREN          reduce using rule 73 (relop -> XOR .)
+    NUMERO          reduce using rule 73 (relop -> XOR .)
+    ID              reduce using rule 73 (relop -> XOR .)
+    TEXTO           reduce using rule 73 (relop -> XOR .)
+
+
+state 61
+
+    (76) relop -> NOT .
+
+    LPAREN          reduce using rule 76 (relop -> NOT .)
+    NUMERO          reduce using rule 76 (relop -> NOT .)
+    ID              reduce using rule 76 (relop -> NOT .)
+    TEXTO           reduce using rule 76 (relop -> NOT .)
+
+
+state 62
+
+    (86) relop -> IGUALCOMPLEMENTO .
+
+    LPAREN          reduce using rule 86 (relop -> IGUALCOMPLEMENTO .)
+    NUMERO          reduce using rule 86 (relop -> IGUALCOMPLEMENTO .)
+    ID              reduce using rule 86 (relop -> IGUALCOMPLEMENTO .)
+    TEXTO           reduce using rule 86 (relop -> IGUALCOMPLEMENTO .)
+
+
+state 63
+
+    (72) relop -> AMPERSANTAMPERSANT .
+
+    LPAREN          reduce using rule 72 (relop -> AMPERSANTAMPERSANT .)
+    NUMERO          reduce using rule 72 (relop -> AMPERSANTAMPERSANT .)
+    ID              reduce using rule 72 (relop -> AMPERSANTAMPERSANT .)
+    TEXTO           reduce using rule 72 (relop -> AMPERSANTAMPERSANT .)
+
+
+state 64
+
+    (67) relop -> MAYORIGUAL .
+
+    LPAREN          reduce using rule 67 (relop -> MAYORIGUAL .)
+    NUMERO          reduce using rule 67 (relop -> MAYORIGUAL .)
+    ID              reduce using rule 67 (relop -> MAYORIGUAL .)
+    TEXTO           reduce using rule 67 (relop -> MAYORIGUAL .)
+
+
+state 65
+
+    (87) relop -> DIFERENTECOMPLEMENTO .
+
+    LPAREN          reduce using rule 87 (relop -> DIFERENTECOMPLEMENTO .)
+    NUMERO          reduce using rule 87 (relop -> DIFERENTECOMPLEMENTO .)
+    ID              reduce using rule 87 (relop -> DIFERENTECOMPLEMENTO .)
+    TEXTO           reduce using rule 87 (relop -> DIFERENTECOMPLEMENTO .)
+
+
+state 66
+
+    (91) relop -> PLECAPLECA .
+
+    LPAREN          reduce using rule 91 (relop -> PLECAPLECA .)
+    NUMERO          reduce using rule 91 (relop -> PLECAPLECA .)
+    ID              reduce using rule 91 (relop -> PLECAPLECA .)
+    TEXTO           reduce using rule 91 (relop -> PLECAPLECA .)
+
+
+state 67
+
+    (79) relop -> MAYORMAYOR .
+
+    LPAREN          reduce using rule 79 (relop -> MAYORMAYOR .)
+    NUMERO          reduce using rule 79 (relop -> MAYORMAYOR .)
+    ID              reduce using rule 79 (relop -> MAYORMAYOR .)
+    TEXTO           reduce using rule 79 (relop -> MAYORMAYOR .)
+
+
+state 68
+
+    (88) relop -> PORCENTAJE .
+
+    LPAREN          reduce using rule 88 (relop -> PORCENTAJE .)
+    NUMERO          reduce using rule 88 (relop -> PORCENTAJE .)
+    ID              reduce using rule 88 (relop -> PORCENTAJE .)
+    TEXTO           reduce using rule 88 (relop -> PORCENTAJE .)
+
+
+state 69
+
+    (74) relop -> AND .
+
+    LPAREN          reduce using rule 74 (relop -> AND .)
+    NUMERO          reduce using rule 74 (relop -> AND .)
+    ID              reduce using rule 74 (relop -> AND .)
+    TEXTO           reduce using rule 74 (relop -> AND .)
+
+
+state 70
+
+    (110) call -> ID LPAREN . args RPAREN
+    (111) args -> . args_list
+    (112) args -> . empty
+    (113) args_list -> . args_list COMA expression
+    (114) args_list -> . expression
+    (115) empty -> .
+    (56) expression -> . var IGUAL expression
+    (57) expression -> . simple_expression
+    (58) expression -> . var IGUAL AMPERSANT ID
+    (59) var -> . ID
+    (60) var -> . TEXTO
+    (61) var -> . ID LBRACKET expression RBRACKET
+    (62) simple_expression -> . additive_expression relop additive_expression
+    (63) simple_expression -> . additive_expression
+    (92) additive_expression -> . additive_expression addop term
+    (93) additive_expression -> . additive_expression addop additive_expression
+    (94) additive_expression -> . term
+    (95) additive_expression -> . term RESTARESTA
+    (96) additive_expression -> . term SUMASUMA
+    (97) additive_expression -> . term MULTIPLICAIGUAL
+    (98) additive_expression -> . term RESTAIGUAL
+    (99) additive_expression -> . term MULTIPLICAMULTIPLICA
+    (102) term -> . term mulop factor
+    (103) term -> . factor
+    (106) factor -> . LPAREN expression RPAREN
+    (107) factor -> . var
+    (108) factor -> . call
+    (109) factor -> . NUMERO
+    (110) call -> . ID LPAREN args RPAREN
+
+    RPAREN          reduce using rule 115 (empty -> .)
+    ID              shift and go to state 25
+    TEXTO           shift and go to state 23
+    LPAREN          shift and go to state 27
+    NUMERO          shift and go to state 17
+
+    args_list                      shift and go to state 98
+    call                           shift and go to state 24
+    var                            shift and go to state 18
+    args                           shift and go to state 101
+    factor                         shift and go to state 19
+    additive_expression            shift and go to state 22
+    simple_expression              shift and go to state 21
+    expression                     shift and go to state 100
+    term                           shift and go to state 26
+    empty                          shift and go to state 99
+
+state 71
+
+    (61) var -> ID LBRACKET . expression RBRACKET
+    (56) expression -> . var IGUAL expression
+    (57) expression -> . simple_expression
+    (58) expression -> . var IGUAL AMPERSANT ID
+    (59) var -> . ID
+    (60) var -> . TEXTO
+    (61) var -> . ID LBRACKET expression RBRACKET
+    (62) simple_expression -> . additive_expression relop additive_expression
+    (63) simple_expression -> . additive_expression
+    (92) additive_expression -> . additive_expression addop term
+    (93) additive_expression -> . additive_expression addop additive_expression
+    (94) additive_expression -> . term
+    (95) additive_expression -> . term RESTARESTA
+    (96) additive_expression -> . term SUMASUMA
+    (97) additive_expression -> . term MULTIPLICAIGUAL
+    (98) additive_expression -> . term RESTAIGUAL
+    (99) additive_expression -> . term MULTIPLICAMULTIPLICA
+    (102) term -> . term mulop factor
+    (103) term -> . factor
+    (106) factor -> . LPAREN expression RPAREN
+    (107) factor -> . var
+    (108) factor -> . call
+    (109) factor -> . NUMERO
+    (110) call -> . ID LPAREN args RPAREN
+
+    ID              shift and go to state 25
+    TEXTO           shift and go to state 23
+    LPAREN          shift and go to state 27
+    NUMERO          shift and go to state 17
+
+    call                           shift and go to state 24
+    expression                     shift and go to state 102
+    term                           shift and go to state 26
+    var                            shift and go to state 18
+    factor                         shift and go to state 19
+    additive_expression            shift and go to state 22
+    simple_expression              shift and go to state 21
+
+state 72
+
+    (104) mulop -> MULTIPLICA .
+
+    LPAREN          reduce using rule 104 (mulop -> MULTIPLICA .)
+    NUMERO          reduce using rule 104 (mulop -> MULTIPLICA .)
+    ID              reduce using rule 104 (mulop -> MULTIPLICA .)
+    TEXTO           reduce using rule 104 (mulop -> MULTIPLICA .)
+
+
+state 73
+
+    (102) term -> term mulop . factor
+    (106) factor -> . LPAREN expression RPAREN
+    (107) factor -> . var
+    (108) factor -> . call
+    (109) factor -> . NUMERO
+    (59) var -> . ID
+    (60) var -> . TEXTO
+    (61) var -> . ID LBRACKET expression RBRACKET
+    (110) call -> . ID LPAREN args RPAREN
+
+    LPAREN          shift and go to state 27
+    NUMERO          shift and go to state 17
+    ID              shift and go to state 25
+    TEXTO           shift and go to state 23
+
+    var                            shift and go to state 88
+    factor                         shift and go to state 103
+    call                           shift and go to state 24
+
+state 74
+
+    (105) mulop -> DIVIDE .
+
+    LPAREN          reduce using rule 105 (mulop -> DIVIDE .)
+    NUMERO          reduce using rule 105 (mulop -> DIVIDE .)
+    ID              reduce using rule 105 (mulop -> DIVIDE .)
+    TEXTO           reduce using rule 105 (mulop -> DIVIDE .)
+
+
+state 75
+
+    (95) additive_expression -> term RESTARESTA .
+
+    MENOR           reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    MENORIGUAL      reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    MAYOR           reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    MAYORIGUAL      reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    IGUAL           reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    DIFERENTE       reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    MENORIGUALMAYOR reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    DIFERENTEIGUAL  reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    AMPERSANTAMPERSANT reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    XOR             reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    AND             reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    OR              reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    NOT             reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    IGUALIGUAL      reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    RESTAMAYOR      reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    MAYORMAYOR      reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    MENORMENOR      reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    X               reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    LE              reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    LT              reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    GT              reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    EQ              reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    IGUALCOMPLEMENTO reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    DIFERENTECOMPLEMENTO reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    PORCENTAJE      reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    PUNTOPUNTOPUNTO reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    IGUALMAYOR      reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    PLECAPLECA      reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    SUMA            reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    RESTA           reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    SEMICOLON       reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    COMA            reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    RPAREN          reduce using rule 95 (additive_expression -> term RESTARESTA .)
+    RBRACKET        reduce using rule 95 (additive_expression -> term RESTARESTA .)
+
+
+state 76
+
+    (99) additive_expression -> term MULTIPLICAMULTIPLICA .
+
+    MENOR           reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    MENORIGUAL      reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    MAYOR           reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    MAYORIGUAL      reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    IGUAL           reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    DIFERENTE       reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    MENORIGUALMAYOR reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    DIFERENTEIGUAL  reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    AMPERSANTAMPERSANT reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    XOR             reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    AND             reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    OR              reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    NOT             reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    IGUALIGUAL      reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    RESTAMAYOR      reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    MAYORMAYOR      reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    MENORMENOR      reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    X               reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    LE              reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    LT              reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    GT              reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    EQ              reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    IGUALCOMPLEMENTO reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    DIFERENTECOMPLEMENTO reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    PORCENTAJE      reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    PUNTOPUNTOPUNTO reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    IGUALMAYOR      reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    PLECAPLECA      reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    SUMA            reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    RESTA           reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    SEMICOLON       reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    COMA            reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    RPAREN          reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+    RBRACKET        reduce using rule 99 (additive_expression -> term MULTIPLICAMULTIPLICA .)
+
+
+state 77
+
+    (96) additive_expression -> term SUMASUMA .
+
+    MENOR           reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    MENORIGUAL      reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    MAYOR           reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    MAYORIGUAL      reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    IGUAL           reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    DIFERENTE       reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    MENORIGUALMAYOR reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    DIFERENTEIGUAL  reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    AMPERSANTAMPERSANT reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    XOR             reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    AND             reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    OR              reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    NOT             reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    IGUALIGUAL      reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    RESTAMAYOR      reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    MAYORMAYOR      reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    MENORMENOR      reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    X               reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    LE              reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    LT              reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    GT              reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    EQ              reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    IGUALCOMPLEMENTO reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    DIFERENTECOMPLEMENTO reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    PORCENTAJE      reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    PUNTOPUNTOPUNTO reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    IGUALMAYOR      reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    PLECAPLECA      reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    SUMA            reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    RESTA           reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    SEMICOLON       reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    COMA            reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    RPAREN          reduce using rule 96 (additive_expression -> term SUMASUMA .)
+    RBRACKET        reduce using rule 96 (additive_expression -> term SUMASUMA .)
+
+
+state 78
+
+    (98) additive_expression -> term RESTAIGUAL .
+
+    MENOR           reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    MENORIGUAL      reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    MAYOR           reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    MAYORIGUAL      reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    IGUAL           reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    DIFERENTE       reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    MENORIGUALMAYOR reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    DIFERENTEIGUAL  reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    AMPERSANTAMPERSANT reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    XOR             reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    AND             reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    OR              reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    NOT             reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    IGUALIGUAL      reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    RESTAMAYOR      reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    MAYORMAYOR      reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    MENORMENOR      reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    X               reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    LE              reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    LT              reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    GT              reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    EQ              reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    IGUALCOMPLEMENTO reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    DIFERENTECOMPLEMENTO reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    PORCENTAJE      reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    PUNTOPUNTOPUNTO reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    IGUALMAYOR      reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    PLECAPLECA      reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    SUMA            reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    RESTA           reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    SEMICOLON       reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    COMA            reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    RPAREN          reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+    RBRACKET        reduce using rule 98 (additive_expression -> term RESTAIGUAL .)
+
+
+state 79
+
+    (97) additive_expression -> term MULTIPLICAIGUAL .
+
+    MENOR           reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    MENORIGUAL      reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    MAYOR           reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    MAYORIGUAL      reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    IGUAL           reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    DIFERENTE       reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    MENORIGUALMAYOR reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    DIFERENTEIGUAL  reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    AMPERSANTAMPERSANT reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    XOR             reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    AND             reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    OR              reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    NOT             reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    IGUALIGUAL      reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    RESTAMAYOR      reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    MAYORMAYOR      reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    MENORMENOR      reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    X               reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    LE              reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    LT              reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    GT              reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    EQ              reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    IGUALCOMPLEMENTO reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    DIFERENTECOMPLEMENTO reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    PORCENTAJE      reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    PUNTOPUNTOPUNTO reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    IGUALMAYOR      reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    PLECAPLECA      reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    SUMA            reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    RESTA           reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    SEMICOLON       reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    COMA            reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    RPAREN          reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+    RBRACKET        reduce using rule 97 (additive_expression -> term MULTIPLICAIGUAL .)
+
+
+state 80
+
+    (106) factor -> LPAREN expression . RPAREN
+
+    RPAREN          shift and go to state 104
+
+
+state 81
+
+    (28) fun_declaration -> SUB IDF LBLOCK . compount_stmt RBLOCK
+    (35) compount_stmt -> . var_declaration
+    (36) compount_stmt -> . fun_execute
+    (37) compount_stmt -> . header_declaration
+    (9) var_declaration -> . var_declaration3 SEMICOLON
+    (25) fun_execute -> . PRINT expression SEMICOLON
+    (26) fun_execute -> . PRINT expression COMA expression SEMICOLON
+    (27) fun_execute -> . CHOP expression SEMICOLON
+    (8) header_declaration -> . CABECERA
+    (11) var_declaration3 -> . ID COMA var_declaration2
+    (12) var_declaration3 -> . ID
+    (13) var_declaration3 -> . ID IGUAL NUMERO COMA var_declaration2
+    (14) var_declaration3 -> . ID IGUAL NUMERO
+    (15) var_declaration3 -> . ID IGUAL TEXTO COMA var_declaration2
+    (16) var_declaration3 -> . ID IGUAL TEXTO
+    (17) var_declaration3 -> . ID IGUAL simple_expression
+    (18) var_declaration3 -> . MULTIPLICA ID COMA var_declaration2
+    (19) var_declaration3 -> . MULTIPLICA ID
+    (20) var_declaration3 -> . ID IGUAL ID COMA var_declaration2
+    (21) var_declaration3 -> . ID IGUAL ID
+    (22) var_declaration3 -> . COMA
+    (23) var_declaration3 -> . MULTIPLICA MULTIPLICA ID
+    (24) var_declaration3 -> . MULTIPLICA MULTIPLICA ID COMA var_declaration2
+
+    PRINT           shift and go to state 3
+    CHOP            shift and go to state 11
+    CABECERA        shift and go to state 13
+    ID              shift and go to state 12
+    MULTIPLICA      shift and go to state 7
+    COMA            shift and go to state 6
+
+    var_declaration                shift and go to state 106
+    fun_execute                    shift and go to state 105
+    compount_stmt                  shift and go to state 108
+    header_declaration             shift and go to state 107
+    var_declaration3               shift and go to state 8
+
+state 82
+
+    (23) var_declaration3 -> MULTIPLICA MULTIPLICA ID .
+    (24) var_declaration3 -> MULTIPLICA MULTIPLICA ID . COMA var_declaration2
+
+    SEMICOLON       reduce using rule 23 (var_declaration3 -> MULTIPLICA MULTIPLICA ID .)
+    COMA            shift and go to state 109
+
+
+state 83
+
+    (18) var_declaration3 -> MULTIPLICA ID COMA . var_declaration2
+    (10) var_declaration2 -> . ID LBRACKET NUMERO RBRACKET SEMICOLON
+
+    ID              shift and go to state 86
+
+    var_declaration2               shift and go to state 110
+
+state 84
+
+    (27) fun_execute -> CHOP expression SEMICOLON .
+
+    SUB             reduce using rule 27 (fun_execute -> CHOP expression SEMICOLON .)
+    PRINT           reduce using rule 27 (fun_execute -> CHOP expression SEMICOLON .)
+    CHOP            reduce using rule 27 (fun_execute -> CHOP expression SEMICOLON .)
+    CABECERA        reduce using rule 27 (fun_execute -> CHOP expression SEMICOLON .)
+    ID              reduce using rule 27 (fun_execute -> CHOP expression SEMICOLON .)
+    MULTIPLICA      reduce using rule 27 (fun_execute -> CHOP expression SEMICOLON .)
+    COMA            reduce using rule 27 (fun_execute -> CHOP expression SEMICOLON .)
+    $end            reduce using rule 27 (fun_execute -> CHOP expression SEMICOLON .)
+    RBLOCK          reduce using rule 27 (fun_execute -> CHOP expression SEMICOLON .)
+
+
+state 85
+
+    (11) var_declaration3 -> ID COMA var_declaration2 .
+
+    SEMICOLON       reduce using rule 11 (var_declaration3 -> ID COMA var_declaration2 .)
+
+
+state 86
+
+    (10) var_declaration2 -> ID . LBRACKET NUMERO RBRACKET SEMICOLON
+
+    LBRACKET        shift and go to state 111
+
+
+state 87
+
+    (13) var_declaration3 -> ID IGUAL NUMERO . COMA var_declaration2
+    (14) var_declaration3 -> ID IGUAL NUMERO .
+    (109) factor -> NUMERO .
+
+  ! reduce/reduce conflict for SEMICOLON resolved using rule 14 (var_declaration3 -> ID IGUAL NUMERO .)
+    COMA            shift and go to state 112
+    SEMICOLON       reduce using rule 14 (var_declaration3 -> ID IGUAL NUMERO .)
+    RESTARESTA      reduce using rule 109 (factor -> NUMERO .)
+    SUMASUMA        reduce using rule 109 (factor -> NUMERO .)
+    MULTIPLICAIGUAL reduce using rule 109 (factor -> NUMERO .)
+    RESTAIGUAL      reduce using rule 109 (factor -> NUMERO .)
+    MULTIPLICAMULTIPLICA reduce using rule 109 (factor -> NUMERO .)
+    MULTIPLICA      reduce using rule 109 (factor -> NUMERO .)
+    DIVIDE          reduce using rule 109 (factor -> NUMERO .)
+    MENOR           reduce using rule 109 (factor -> NUMERO .)
+    MENORIGUAL      reduce using rule 109 (factor -> NUMERO .)
+    MAYOR           reduce using rule 109 (factor -> NUMERO .)
+    MAYORIGUAL      reduce using rule 109 (factor -> NUMERO .)
+    IGUAL           reduce using rule 109 (factor -> NUMERO .)
+    DIFERENTE       reduce using rule 109 (factor -> NUMERO .)
+    MENORIGUALMAYOR reduce using rule 109 (factor -> NUMERO .)
+    DIFERENTEIGUAL  reduce using rule 109 (factor -> NUMERO .)
+    AMPERSANTAMPERSANT reduce using rule 109 (factor -> NUMERO .)
+    XOR             reduce using rule 109 (factor -> NUMERO .)
+    AND             reduce using rule 109 (factor -> NUMERO .)
+    OR              reduce using rule 109 (factor -> NUMERO .)
+    NOT             reduce using rule 109 (factor -> NUMERO .)
+    IGUALIGUAL      reduce using rule 109 (factor -> NUMERO .)
+    RESTAMAYOR      reduce using rule 109 (factor -> NUMERO .)
+    MAYORMAYOR      reduce using rule 109 (factor -> NUMERO .)
+    MENORMENOR      reduce using rule 109 (factor -> NUMERO .)
+    X               reduce using rule 109 (factor -> NUMERO .)
+    LE              reduce using rule 109 (factor -> NUMERO .)
+    LT              reduce using rule 109 (factor -> NUMERO .)
+    GT              reduce using rule 109 (factor -> NUMERO .)
+    EQ              reduce using rule 109 (factor -> NUMERO .)
+    IGUALCOMPLEMENTO reduce using rule 109 (factor -> NUMERO .)
+    DIFERENTECOMPLEMENTO reduce using rule 109 (factor -> NUMERO .)
+    PORCENTAJE      reduce using rule 109 (factor -> NUMERO .)
+    PUNTOPUNTOPUNTO reduce using rule 109 (factor -> NUMERO .)
+    IGUALMAYOR      reduce using rule 109 (factor -> NUMERO .)
+    PLECAPLECA      reduce using rule 109 (factor -> NUMERO .)
+    SUMA            reduce using rule 109 (factor -> NUMERO .)
+    RESTA           reduce using rule 109 (factor -> NUMERO .)
+
+  ! SEMICOLON       [ reduce using rule 109 (factor -> NUMERO .) ]
+
+
+state 88
+
+    (107) factor -> var .
+
+    RESTARESTA      reduce using rule 107 (factor -> var .)
+    SUMASUMA        reduce using rule 107 (factor -> var .)
+    MULTIPLICAIGUAL reduce using rule 107 (factor -> var .)
+    RESTAIGUAL      reduce using rule 107 (factor -> var .)
+    MULTIPLICAMULTIPLICA reduce using rule 107 (factor -> var .)
+    MULTIPLICA      reduce using rule 107 (factor -> var .)
+    DIVIDE          reduce using rule 107 (factor -> var .)
+    MENOR           reduce using rule 107 (factor -> var .)
+    MENORIGUAL      reduce using rule 107 (factor -> var .)
+    MAYOR           reduce using rule 107 (factor -> var .)
+    MAYORIGUAL      reduce using rule 107 (factor -> var .)
+    IGUAL           reduce using rule 107 (factor -> var .)
+    DIFERENTE       reduce using rule 107 (factor -> var .)
+    MENORIGUALMAYOR reduce using rule 107 (factor -> var .)
+    DIFERENTEIGUAL  reduce using rule 107 (factor -> var .)
+    AMPERSANTAMPERSANT reduce using rule 107 (factor -> var .)
+    XOR             reduce using rule 107 (factor -> var .)
+    AND             reduce using rule 107 (factor -> var .)
+    OR              reduce using rule 107 (factor -> var .)
+    NOT             reduce using rule 107 (factor -> var .)
+    IGUALIGUAL      reduce using rule 107 (factor -> var .)
+    RESTAMAYOR      reduce using rule 107 (factor -> var .)
+    MAYORMAYOR      reduce using rule 107 (factor -> var .)
+    MENORMENOR      reduce using rule 107 (factor -> var .)
+    X               reduce using rule 107 (factor -> var .)
+    LE              reduce using rule 107 (factor -> var .)
+    LT              reduce using rule 107 (factor -> var .)
+    GT              reduce using rule 107 (factor -> var .)
+    EQ              reduce using rule 107 (factor -> var .)
+    IGUALCOMPLEMENTO reduce using rule 107 (factor -> var .)
+    DIFERENTECOMPLEMENTO reduce using rule 107 (factor -> var .)
+    PORCENTAJE      reduce using rule 107 (factor -> var .)
+    PUNTOPUNTOPUNTO reduce using rule 107 (factor -> var .)
+    IGUALMAYOR      reduce using rule 107 (factor -> var .)
+    PLECAPLECA      reduce using rule 107 (factor -> var .)
+    SUMA            reduce using rule 107 (factor -> var .)
+    RESTA           reduce using rule 107 (factor -> var .)
+    SEMICOLON       reduce using rule 107 (factor -> var .)
+    COMA            reduce using rule 107 (factor -> var .)
+    RPAREN          reduce using rule 107 (factor -> var .)
+    RBRACKET        reduce using rule 107 (factor -> var .)
+
+
+state 89
+
+    (17) var_declaration3 -> ID IGUAL simple_expression .
+
+    SEMICOLON       reduce using rule 17 (var_declaration3 -> ID IGUAL simple_expression .)
+
+
+state 90
+
+    (15) var_declaration3 -> ID IGUAL TEXTO . COMA var_declaration2
+    (16) var_declaration3 -> ID IGUAL TEXTO .
+    (60) var -> TEXTO .
+
+  ! reduce/reduce conflict for SEMICOLON resolved using rule 16 (var_declaration3 -> ID IGUAL TEXTO .)
+    COMA            shift and go to state 113
+    SEMICOLON       reduce using rule 16 (var_declaration3 -> ID IGUAL TEXTO .)
+    RESTARESTA      reduce using rule 60 (var -> TEXTO .)
+    SUMASUMA        reduce using rule 60 (var -> TEXTO .)
+    MULTIPLICAIGUAL reduce using rule 60 (var -> TEXTO .)
+    RESTAIGUAL      reduce using rule 60 (var -> TEXTO .)
+    MULTIPLICAMULTIPLICA reduce using rule 60 (var -> TEXTO .)
+    MULTIPLICA      reduce using rule 60 (var -> TEXTO .)
+    DIVIDE          reduce using rule 60 (var -> TEXTO .)
+    MENOR           reduce using rule 60 (var -> TEXTO .)
+    MENORIGUAL      reduce using rule 60 (var -> TEXTO .)
+    MAYOR           reduce using rule 60 (var -> TEXTO .)
+    MAYORIGUAL      reduce using rule 60 (var -> TEXTO .)
+    IGUAL           reduce using rule 60 (var -> TEXTO .)
+    DIFERENTE       reduce using rule 60 (var -> TEXTO .)
+    MENORIGUALMAYOR reduce using rule 60 (var -> TEXTO .)
+    DIFERENTEIGUAL  reduce using rule 60 (var -> TEXTO .)
+    AMPERSANTAMPERSANT reduce using rule 60 (var -> TEXTO .)
+    XOR             reduce using rule 60 (var -> TEXTO .)
+    AND             reduce using rule 60 (var -> TEXTO .)
+    OR              reduce using rule 60 (var -> TEXTO .)
+    NOT             reduce using rule 60 (var -> TEXTO .)
+    IGUALIGUAL      reduce using rule 60 (var -> TEXTO .)
+    RESTAMAYOR      reduce using rule 60 (var -> TEXTO .)
+    MAYORMAYOR      reduce using rule 60 (var -> TEXTO .)
+    MENORMENOR      reduce using rule 60 (var -> TEXTO .)
+    X               reduce using rule 60 (var -> TEXTO .)
+    LE              reduce using rule 60 (var -> TEXTO .)
+    LT              reduce using rule 60 (var -> TEXTO .)
+    GT              reduce using rule 60 (var -> TEXTO .)
+    EQ              reduce using rule 60 (var -> TEXTO .)
+    IGUALCOMPLEMENTO reduce using rule 60 (var -> TEXTO .)
+    DIFERENTECOMPLEMENTO reduce using rule 60 (var -> TEXTO .)
+    PORCENTAJE      reduce using rule 60 (var -> TEXTO .)
+    PUNTOPUNTOPUNTO reduce using rule 60 (var -> TEXTO .)
+    IGUALMAYOR      reduce using rule 60 (var -> TEXTO .)
+    PLECAPLECA      reduce using rule 60 (var -> TEXTO .)
+    SUMA            reduce using rule 60 (var -> TEXTO .)
+    RESTA           reduce using rule 60 (var -> TEXTO .)
+
+  ! SEMICOLON       [ reduce using rule 60 (var -> TEXTO .) ]
+
+
+state 91
+
+    (20) var_declaration3 -> ID IGUAL ID . COMA var_declaration2
+    (21) var_declaration3 -> ID IGUAL ID .
+    (59) var -> ID .
+    (61) var -> ID . LBRACKET expression RBRACKET
+    (110) call -> ID . LPAREN args RPAREN
+
+  ! reduce/reduce conflict for SEMICOLON resolved using rule 21 (var_declaration3 -> ID IGUAL ID .)
+    COMA            shift and go to state 114
+    SEMICOLON       reduce using rule 21 (var_declaration3 -> ID IGUAL ID .)
+    RESTARESTA      reduce using rule 59 (var -> ID .)
+    SUMASUMA        reduce using rule 59 (var -> ID .)
+    MULTIPLICAIGUAL reduce using rule 59 (var -> ID .)
+    RESTAIGUAL      reduce using rule 59 (var -> ID .)
+    MULTIPLICAMULTIPLICA reduce using rule 59 (var -> ID .)
+    MULTIPLICA      reduce using rule 59 (var -> ID .)
+    DIVIDE          reduce using rule 59 (var -> ID .)
+    MENOR           reduce using rule 59 (var -> ID .)
+    MENORIGUAL      reduce using rule 59 (var -> ID .)
+    MAYOR           reduce using rule 59 (var -> ID .)
+    MAYORIGUAL      reduce using rule 59 (var -> ID .)
+    IGUAL           reduce using rule 59 (var -> ID .)
+    DIFERENTE       reduce using rule 59 (var -> ID .)
+    MENORIGUALMAYOR reduce using rule 59 (var -> ID .)
+    DIFERENTEIGUAL  reduce using rule 59 (var -> ID .)
+    AMPERSANTAMPERSANT reduce using rule 59 (var -> ID .)
+    XOR             reduce using rule 59 (var -> ID .)
+    AND             reduce using rule 59 (var -> ID .)
+    OR              reduce using rule 59 (var -> ID .)
+    NOT             reduce using rule 59 (var -> ID .)
+    IGUALIGUAL      reduce using rule 59 (var -> ID .)
+    RESTAMAYOR      reduce using rule 59 (var -> ID .)
+    MAYORMAYOR      reduce using rule 59 (var -> ID .)
+    MENORMENOR      reduce using rule 59 (var -> ID .)
+    X               reduce using rule 59 (var -> ID .)
+    LE              reduce using rule 59 (var -> ID .)
+    LT              reduce using rule 59 (var -> ID .)
+    GT              reduce using rule 59 (var -> ID .)
+    EQ              reduce using rule 59 (var -> ID .)
+    IGUALCOMPLEMENTO reduce using rule 59 (var -> ID .)
+    DIFERENTECOMPLEMENTO reduce using rule 59 (var -> ID .)
+    PORCENTAJE      reduce using rule 59 (var -> ID .)
+    PUNTOPUNTOPUNTO reduce using rule 59 (var -> ID .)
+    IGUALMAYOR      reduce using rule 59 (var -> ID .)
+    PLECAPLECA      reduce using rule 59 (var -> ID .)
+    SUMA            reduce using rule 59 (var -> ID .)
+    RESTA           reduce using rule 59 (var -> ID .)
+    LBRACKET        shift and go to state 71
+    LPAREN          shift and go to state 70
+
+  ! SEMICOLON       [ reduce using rule 59 (var -> ID .) ]
+
+
+state 92
+
+    (58) expression -> var IGUAL AMPERSANT . ID
+
+    ID              shift and go to state 115
+
+
+state 93
+
+    (56) expression -> var IGUAL expression .
+
+    RBRACKET        reduce using rule 56 (expression -> var IGUAL expression .)
+    SEMICOLON       reduce using rule 56 (expression -> var IGUAL expression .)
+    COMA            reduce using rule 56 (expression -> var IGUAL expression .)
+    RPAREN          reduce using rule 56 (expression -> var IGUAL expression .)
+
+
+state 94
+
+    (26) fun_execute -> PRINT expression COMA expression . SEMICOLON
+
+    SEMICOLON       shift and go to state 116
+
+
+state 95
+
+    (62) simple_expression -> additive_expression relop additive_expression .
+    (92) additive_expression -> additive_expression . addop term
+    (93) additive_expression -> additive_expression . addop additive_expression
+    (100) addop -> . SUMA
+    (101) addop -> . RESTA
+
+    SEMICOLON       reduce using rule 62 (simple_expression -> additive_expression relop additive_expression .)
+    COMA            reduce using rule 62 (simple_expression -> additive_expression relop additive_expression .)
+    RPAREN          reduce using rule 62 (simple_expression -> additive_expression relop additive_expression .)
+    RBRACKET        reduce using rule 62 (simple_expression -> additive_expression relop additive_expression .)
+    SUMA            shift and go to state 38
+    RESTA           shift and go to state 41
+
+    addop                          shift and go to state 54
+
+state 96
+
+    (93) additive_expression -> additive_expression addop additive_expression .
+    (92) additive_expression -> additive_expression . addop term
+    (93) additive_expression -> additive_expression . addop additive_expression
+    (100) addop -> . SUMA
+    (101) addop -> . RESTA
+
+  ! shift/reduce conflict for SUMA resolved as shift
+  ! shift/reduce conflict for RESTA resolved as shift
+    MENOR           reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    MENORIGUAL      reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    MAYOR           reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    MAYORIGUAL      reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    IGUAL           reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    DIFERENTE       reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    MENORIGUALMAYOR reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    DIFERENTEIGUAL  reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    AMPERSANTAMPERSANT reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    XOR             reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    AND             reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    OR              reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    NOT             reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    IGUALIGUAL      reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    RESTAMAYOR      reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    MAYORMAYOR      reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    MENORMENOR      reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    X               reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    LE              reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    LT              reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    GT              reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    EQ              reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    IGUALCOMPLEMENTO reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    DIFERENTECOMPLEMENTO reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    PORCENTAJE      reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    PUNTOPUNTOPUNTO reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    IGUALMAYOR      reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    PLECAPLECA      reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    SEMICOLON       reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    COMA            reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    RPAREN          reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    RBRACKET        reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .)
+    SUMA            shift and go to state 38
+    RESTA           shift and go to state 41
+
+  ! SUMA            [ reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .) ]
+  ! RESTA           [ reduce using rule 93 (additive_expression -> additive_expression addop additive_expression .) ]
+
+    addop                          shift and go to state 54
+
+state 97
+
+    (92) additive_expression -> additive_expression addop term .
+    (102) term -> term . mulop factor
+    (94) additive_expression -> term .
+    (95) additive_expression -> term . RESTARESTA
+    (96) additive_expression -> term . SUMASUMA
+    (97) additive_expression -> term . MULTIPLICAIGUAL
+    (98) additive_expression -> term . RESTAIGUAL
+    (99) additive_expression -> term . MULTIPLICAMULTIPLICA
+    (104) mulop -> . MULTIPLICA
+    (105) mulop -> . DIVIDE
+
+  ! reduce/reduce conflict for SUMA resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for RESTA resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for MENOR resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for MENORIGUAL resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for MAYOR resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for MAYORIGUAL resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for IGUAL resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for DIFERENTE resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for MENORIGUALMAYOR resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for DIFERENTEIGUAL resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for AMPERSANTAMPERSANT resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for XOR resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for AND resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for OR resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for NOT resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for IGUALIGUAL resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for RESTAMAYOR resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for MAYORMAYOR resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for MENORMENOR resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for X resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for LE resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for LT resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for GT resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for EQ resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for IGUALCOMPLEMENTO resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for DIFERENTECOMPLEMENTO resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for PORCENTAJE resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for PUNTOPUNTOPUNTO resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for IGUALMAYOR resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for PLECAPLECA resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for SEMICOLON resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for COMA resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for RPAREN resolved using rule 92 (additive_expression -> additive_expression addop term .)
+  ! reduce/reduce conflict for RBRACKET resolved using rule 92 (additive_expression -> additive_expression addop term .)
+    MENOR           reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    MENORIGUAL      reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    MAYOR           reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    MAYORIGUAL      reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    IGUAL           reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    DIFERENTE       reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    MENORIGUALMAYOR reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    DIFERENTEIGUAL  reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    AMPERSANTAMPERSANT reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    XOR             reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    AND             reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    OR              reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    NOT             reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    IGUALIGUAL      reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    RESTAMAYOR      reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    MAYORMAYOR      reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    MENORMENOR      reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    X               reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    LE              reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    LT              reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    GT              reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    EQ              reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    IGUALCOMPLEMENTO reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    DIFERENTECOMPLEMENTO reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    PORCENTAJE      reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    PUNTOPUNTOPUNTO reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    IGUALMAYOR      reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    PLECAPLECA      reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    SUMA            reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    RESTA           reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    SEMICOLON       reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    COMA            reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    RPAREN          reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    RBRACKET        reduce using rule 92 (additive_expression -> additive_expression addop term .)
+    RESTARESTA      shift and go to state 75
+    SUMASUMA        shift and go to state 77
+    MULTIPLICAIGUAL shift and go to state 79
+    RESTAIGUAL      shift and go to state 78
+    MULTIPLICAMULTIPLICA shift and go to state 76
+    MULTIPLICA      shift and go to state 72
+    DIVIDE          shift and go to state 74
+
+  ! SUMA            [ reduce using rule 94 (additive_expression -> term .) ]
+  ! RESTA           [ reduce using rule 94 (additive_expression -> term .) ]
+  ! MENOR           [ reduce using rule 94 (additive_expression -> term .) ]
+  ! MENORIGUAL      [ reduce using rule 94 (additive_expression -> term .) ]
+  ! MAYOR           [ reduce using rule 94 (additive_expression -> term .) ]
+  ! MAYORIGUAL      [ reduce using rule 94 (additive_expression -> term .) ]
+  ! IGUAL           [ reduce using rule 94 (additive_expression -> term .) ]
+  ! DIFERENTE       [ reduce using rule 94 (additive_expression -> term .) ]
+  ! MENORIGUALMAYOR [ reduce using rule 94 (additive_expression -> term .) ]
+  ! DIFERENTEIGUAL  [ reduce using rule 94 (additive_expression -> term .) ]
+  ! AMPERSANTAMPERSANT [ reduce using rule 94 (additive_expression -> term .) ]
+  ! XOR             [ reduce using rule 94 (additive_expression -> term .) ]
+  ! AND             [ reduce using rule 94 (additive_expression -> term .) ]
+  ! OR              [ reduce using rule 94 (additive_expression -> term .) ]
+  ! NOT             [ reduce using rule 94 (additive_expression -> term .) ]
+  ! IGUALIGUAL      [ reduce using rule 94 (additive_expression -> term .) ]
+  ! RESTAMAYOR      [ reduce using rule 94 (additive_expression -> term .) ]
+  ! MAYORMAYOR      [ reduce using rule 94 (additive_expression -> term .) ]
+  ! MENORMENOR      [ reduce using rule 94 (additive_expression -> term .) ]
+  ! X               [ reduce using rule 94 (additive_expression -> term .) ]
+  ! LE              [ reduce using rule 94 (additive_expression -> term .) ]
+  ! LT              [ reduce using rule 94 (additive_expression -> term .) ]
+  ! GT              [ reduce using rule 94 (additive_expression -> term .) ]
+  ! EQ              [ reduce using rule 94 (additive_expression -> term .) ]
+  ! IGUALCOMPLEMENTO [ reduce using rule 94 (additive_expression -> term .) ]
+  ! DIFERENTECOMPLEMENTO [ reduce using rule 94 (additive_expression -> term .) ]
+  ! PORCENTAJE      [ reduce using rule 94 (additive_expression -> term .) ]
+  ! PUNTOPUNTOPUNTO [ reduce using rule 94 (additive_expression -> term .) ]
+  ! IGUALMAYOR      [ reduce using rule 94 (additive_expression -> term .) ]
+  ! PLECAPLECA      [ reduce using rule 94 (additive_expression -> term .) ]
+  ! SEMICOLON       [ reduce using rule 94 (additive_expression -> term .) ]
+  ! COMA            [ reduce using rule 94 (additive_expression -> term .) ]
+  ! RPAREN          [ reduce using rule 94 (additive_expression -> term .) ]
+  ! RBRACKET        [ reduce using rule 94 (additive_expression -> term .) ]
+
+    mulop                          shift and go to state 73
+
+state 98
+
+    (111) args -> args_list .
+    (113) args_list -> args_list . COMA expression
+
+    RPAREN          reduce using rule 111 (args -> args_list .)
+    COMA            shift and go to state 117
+
+
+state 99
+
+    (112) args -> empty .
+
+    RPAREN          reduce using rule 112 (args -> empty .)
+
+
+state 100
+
+    (114) args_list -> expression .
+
+    COMA            reduce using rule 114 (args_list -> expression .)
+    RPAREN          reduce using rule 114 (args_list -> expression .)
+
+
+state 101
+
+    (110) call -> ID LPAREN args . RPAREN
+
+    RPAREN          shift and go to state 118
+
+
+state 102
+
+    (61) var -> ID LBRACKET expression . RBRACKET
+
+    RBRACKET        shift and go to state 119
+
+
+state 103
+
+    (102) term -> term mulop factor .
+
+    RESTARESTA      reduce using rule 102 (term -> term mulop factor .)
+    SUMASUMA        reduce using rule 102 (term -> term mulop factor .)
+    MULTIPLICAIGUAL reduce using rule 102 (term -> term mulop factor .)
+    RESTAIGUAL      reduce using rule 102 (term -> term mulop factor .)
+    MULTIPLICAMULTIPLICA reduce using rule 102 (term -> term mulop factor .)
+    MULTIPLICA      reduce using rule 102 (term -> term mulop factor .)
+    DIVIDE          reduce using rule 102 (term -> term mulop factor .)
+    MENOR           reduce using rule 102 (term -> term mulop factor .)
+    MENORIGUAL      reduce using rule 102 (term -> term mulop factor .)
+    MAYOR           reduce using rule 102 (term -> term mulop factor .)
+    MAYORIGUAL      reduce using rule 102 (term -> term mulop factor .)
+    IGUAL           reduce using rule 102 (term -> term mulop factor .)
+    DIFERENTE       reduce using rule 102 (term -> term mulop factor .)
+    MENORIGUALMAYOR reduce using rule 102 (term -> term mulop factor .)
+    DIFERENTEIGUAL  reduce using rule 102 (term -> term mulop factor .)
+    AMPERSANTAMPERSANT reduce using rule 102 (term -> term mulop factor .)
+    XOR             reduce using rule 102 (term -> term mulop factor .)
+    AND             reduce using rule 102 (term -> term mulop factor .)
+    OR              reduce using rule 102 (term -> term mulop factor .)
+    NOT             reduce using rule 102 (term -> term mulop factor .)
+    IGUALIGUAL      reduce using rule 102 (term -> term mulop factor .)
+    RESTAMAYOR      reduce using rule 102 (term -> term mulop factor .)
+    MAYORMAYOR      reduce using rule 102 (term -> term mulop factor .)
+    MENORMENOR      reduce using rule 102 (term -> term mulop factor .)
+    X               reduce using rule 102 (term -> term mulop factor .)
+    LE              reduce using rule 102 (term -> term mulop factor .)
+    LT              reduce using rule 102 (term -> term mulop factor .)
+    GT              reduce using rule 102 (term -> term mulop factor .)
+    EQ              reduce using rule 102 (term -> term mulop factor .)
+    IGUALCOMPLEMENTO reduce using rule 102 (term -> term mulop factor .)
+    DIFERENTECOMPLEMENTO reduce using rule 102 (term -> term mulop factor .)
+    PORCENTAJE      reduce using rule 102 (term -> term mulop factor .)
+    PUNTOPUNTOPUNTO reduce using rule 102 (term -> term mulop factor .)
+    IGUALMAYOR      reduce using rule 102 (term -> term mulop factor .)
+    PLECAPLECA      reduce using rule 102 (term -> term mulop factor .)
+    SUMA            reduce using rule 102 (term -> term mulop factor .)
+    RESTA           reduce using rule 102 (term -> term mulop factor .)
+    SEMICOLON       reduce using rule 102 (term -> term mulop factor .)
+    COMA            reduce using rule 102 (term -> term mulop factor .)
+    RPAREN          reduce using rule 102 (term -> term mulop factor .)
+    RBRACKET        reduce using rule 102 (term -> term mulop factor .)
+
+
+state 104
+
+    (106) factor -> LPAREN expression RPAREN .
+
+    RESTARESTA      reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    SUMASUMA        reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    MULTIPLICAIGUAL reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    RESTAIGUAL      reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    MULTIPLICAMULTIPLICA reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    MULTIPLICA      reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    MENOR           reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    MENORIGUAL      reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    MAYOR           reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    MAYORIGUAL      reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    IGUAL           reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    DIFERENTE       reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    MENORIGUALMAYOR reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    DIFERENTEIGUAL  reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    AMPERSANTAMPERSANT reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    XOR             reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    AND             reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    OR              reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    NOT             reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    IGUALIGUAL      reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    RESTAMAYOR      reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    MAYORMAYOR      reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    MENORMENOR      reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    X               reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    LE              reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    LT              reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    GT              reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    EQ              reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    IGUALCOMPLEMENTO reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    DIFERENTECOMPLEMENTO reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    PORCENTAJE      reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    PUNTOPUNTOPUNTO reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    IGUALMAYOR      reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    PLECAPLECA      reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    SUMA            reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    RESTA           reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    SEMICOLON       reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    COMA            reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+    RBRACKET        reduce using rule 106 (factor -> LPAREN expression RPAREN .)
+
+
+state 105
+
+    (36) compount_stmt -> fun_execute .
+
+    RBLOCK          reduce using rule 36 (compount_stmt -> fun_execute .)
+
+
+state 106
+
+    (35) compount_stmt -> var_declaration .
+
+    RBLOCK          reduce using rule 35 (compount_stmt -> var_declaration .)
+
+
+state 107
+
+    (37) compount_stmt -> header_declaration .
+
+    RBLOCK          reduce using rule 37 (compount_stmt -> header_declaration .)
+
+
+state 108
+
+    (28) fun_declaration -> SUB IDF LBLOCK compount_stmt . RBLOCK
+
+    RBLOCK          shift and go to state 120
+
+
+state 109
+
+    (24) var_declaration3 -> MULTIPLICA MULTIPLICA ID COMA . var_declaration2
+    (10) var_declaration2 -> . ID LBRACKET NUMERO RBRACKET SEMICOLON
+
+    ID              shift and go to state 86
+
+    var_declaration2               shift and go to state 121
+
+state 110
+
+    (18) var_declaration3 -> MULTIPLICA ID COMA var_declaration2 .
+
+    SEMICOLON       reduce using rule 18 (var_declaration3 -> MULTIPLICA ID COMA var_declaration2 .)
+
+
+state 111
+
+    (10) var_declaration2 -> ID LBRACKET . NUMERO RBRACKET SEMICOLON
+
+    NUMERO          shift and go to state 122
+
+
+state 112
+
+    (13) var_declaration3 -> ID IGUAL NUMERO COMA . var_declaration2
+    (10) var_declaration2 -> . ID LBRACKET NUMERO RBRACKET SEMICOLON
+
+    ID              shift and go to state 86
+
+    var_declaration2               shift and go to state 123
+
+state 113
+
+    (15) var_declaration3 -> ID IGUAL TEXTO COMA . var_declaration2
+    (10) var_declaration2 -> . ID LBRACKET NUMERO RBRACKET SEMICOLON
+
+    ID              shift and go to state 86
+
+    var_declaration2               shift and go to state 124
+
+state 114
+
+    (20) var_declaration3 -> ID IGUAL ID COMA . var_declaration2
+    (10) var_declaration2 -> . ID LBRACKET NUMERO RBRACKET SEMICOLON
+
+    ID              shift and go to state 86
+
+    var_declaration2               shift and go to state 125
+
+state 115
+
+    (58) expression -> var IGUAL AMPERSANT ID .
+
+    RBRACKET        reduce using rule 58 (expression -> var IGUAL AMPERSANT ID .)
+    SEMICOLON       reduce using rule 58 (expression -> var IGUAL AMPERSANT ID .)
+    COMA            reduce using rule 58 (expression -> var IGUAL AMPERSANT ID .)
+    RPAREN          reduce using rule 58 (expression -> var IGUAL AMPERSANT ID .)
+
+
+state 116
+
+    (26) fun_execute -> PRINT expression COMA expression SEMICOLON .
+
+    SUB             reduce using rule 26 (fun_execute -> PRINT expression COMA expression SEMICOLON .)
+    PRINT           reduce using rule 26 (fun_execute -> PRINT expression COMA expression SEMICOLON .)
+    CHOP            reduce using rule 26 (fun_execute -> PRINT expression COMA expression SEMICOLON .)
+    CABECERA        reduce using rule 26 (fun_execute -> PRINT expression COMA expression SEMICOLON .)
+    ID              reduce using rule 26 (fun_execute -> PRINT expression COMA expression SEMICOLON .)
+    MULTIPLICA      reduce using rule 26 (fun_execute -> PRINT expression COMA expression SEMICOLON .)
+    COMA            reduce using rule 26 (fun_execute -> PRINT expression COMA expression SEMICOLON .)
+    $end            reduce using rule 26 (fun_execute -> PRINT expression COMA expression SEMICOLON .)
+    RBLOCK          reduce using rule 26 (fun_execute -> PRINT expression COMA expression SEMICOLON .)
+
+
+state 117
+
+    (113) args_list -> args_list COMA . expression
+    (56) expression -> . var IGUAL expression
+    (57) expression -> . simple_expression
+    (58) expression -> . var IGUAL AMPERSANT ID
+    (59) var -> . ID
+    (60) var -> . TEXTO
+    (61) var -> . ID LBRACKET expression RBRACKET
+    (62) simple_expression -> . additive_expression relop additive_expression
+    (63) simple_expression -> . additive_expression
+    (92) additive_expression -> . additive_expression addop term
+    (93) additive_expression -> . additive_expression addop additive_expression
+    (94) additive_expression -> . term
+    (95) additive_expression -> . term RESTARESTA
+    (96) additive_expression -> . term SUMASUMA
+    (97) additive_expression -> . term MULTIPLICAIGUAL
+    (98) additive_expression -> . term RESTAIGUAL
+    (99) additive_expression -> . term MULTIPLICAMULTIPLICA
+    (102) term -> . term mulop factor
+    (103) term -> . factor
+    (106) factor -> . LPAREN expression RPAREN
+    (107) factor -> . var
+    (108) factor -> . call
+    (109) factor -> . NUMERO
+    (110) call -> . ID LPAREN args RPAREN
+
+    ID              shift and go to state 25
+    TEXTO           shift and go to state 23
+    LPAREN          shift and go to state 27
+    NUMERO          shift and go to state 17
+
+    var                            shift and go to state 18
+    additive_expression            shift and go to state 22
+    factor                         shift and go to state 19
+    expression                     shift and go to state 126
+    term                           shift and go to state 26
+    simple_expression              shift and go to state 21
+    call                           shift and go to state 24
+
+state 118
+
+    (110) call -> ID LPAREN args RPAREN .
+
+    RESTARESTA      reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    SUMASUMA        reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    MULTIPLICAIGUAL reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    RESTAIGUAL      reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    MULTIPLICAMULTIPLICA reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    MULTIPLICA      reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    DIVIDE          reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    MENOR           reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    MENORIGUAL      reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    MAYOR           reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    MAYORIGUAL      reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    IGUAL           reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    DIFERENTE       reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    MENORIGUALMAYOR reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    DIFERENTEIGUAL  reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    AMPERSANTAMPERSANT reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    XOR             reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    AND             reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    OR              reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    NOT             reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    IGUALIGUAL      reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    RESTAMAYOR      reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    MAYORMAYOR      reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    MENORMENOR      reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    X               reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    LE              reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    LT              reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    GT              reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    EQ              reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    IGUALCOMPLEMENTO reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    DIFERENTECOMPLEMENTO reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    PORCENTAJE      reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    PUNTOPUNTOPUNTO reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    IGUALMAYOR      reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    PLECAPLECA      reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    SUMA            reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    RESTA           reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    SEMICOLON       reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    COMA            reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    RPAREN          reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+    RBRACKET        reduce using rule 110 (call -> ID LPAREN args RPAREN .)
+
+
+state 119
+
+    (61) var -> ID LBRACKET expression RBRACKET .
+
+    IGUAL           reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    RESTARESTA      reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    SUMASUMA        reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    MULTIPLICAIGUAL reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    RESTAIGUAL      reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    MULTIPLICAMULTIPLICA reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    MULTIPLICA      reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    DIVIDE          reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    MENOR           reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    MENORIGUAL      reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    MAYOR           reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    MAYORIGUAL      reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    DIFERENTE       reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    MENORIGUALMAYOR reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    DIFERENTEIGUAL  reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    AMPERSANTAMPERSANT reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    XOR             reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    AND             reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    OR              reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    NOT             reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    IGUALIGUAL      reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    RESTAMAYOR      reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    MAYORMAYOR      reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    MENORMENOR      reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    X               reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    LE              reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    LT              reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    GT              reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    EQ              reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    IGUALCOMPLEMENTO reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    DIFERENTECOMPLEMENTO reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    PORCENTAJE      reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    PUNTOPUNTOPUNTO reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    IGUALMAYOR      reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    PLECAPLECA      reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    SUMA            reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    RESTA           reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    SEMICOLON       reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    COMA            reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    RBRACKET        reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+    RPAREN          reduce using rule 61 (var -> ID LBRACKET expression RBRACKET .)
+
+
+state 120
+
+    (28) fun_declaration -> SUB IDF LBLOCK compount_stmt RBLOCK .
+
+    SUB             reduce using rule 28 (fun_declaration -> SUB IDF LBLOCK compount_stmt RBLOCK .)
+    PRINT           reduce using rule 28 (fun_declaration -> SUB IDF LBLOCK compount_stmt RBLOCK .)
+    CHOP            reduce using rule 28 (fun_declaration -> SUB IDF LBLOCK compount_stmt RBLOCK .)
+    CABECERA        reduce using rule 28 (fun_declaration -> SUB IDF LBLOCK compount_stmt RBLOCK .)
+    ID              reduce using rule 28 (fun_declaration -> SUB IDF LBLOCK compount_stmt RBLOCK .)
+    MULTIPLICA      reduce using rule 28 (fun_declaration -> SUB IDF LBLOCK compount_stmt RBLOCK .)
+    COMA            reduce using rule 28 (fun_declaration -> SUB IDF LBLOCK compount_stmt RBLOCK .)
+    $end            reduce using rule 28 (fun_declaration -> SUB IDF LBLOCK compount_stmt RBLOCK .)
+
+
+state 121
+
+    (24) var_declaration3 -> MULTIPLICA MULTIPLICA ID COMA var_declaration2 .
+
+    SEMICOLON       reduce using rule 24 (var_declaration3 -> MULTIPLICA MULTIPLICA ID COMA var_declaration2 .)
+
+
+state 122
+
+    (10) var_declaration2 -> ID LBRACKET NUMERO . RBRACKET SEMICOLON
+
+    RBRACKET        shift and go to state 127
+
+
+state 123
+
+    (13) var_declaration3 -> ID IGUAL NUMERO COMA var_declaration2 .
+
+    SEMICOLON       reduce using rule 13 (var_declaration3 -> ID IGUAL NUMERO COMA var_declaration2 .)
+
+
+state 124
+
+    (15) var_declaration3 -> ID IGUAL TEXTO COMA var_declaration2 .
+
+    SEMICOLON       reduce using rule 15 (var_declaration3 -> ID IGUAL TEXTO COMA var_declaration2 .)
+
+
+state 125
+
+    (20) var_declaration3 -> ID IGUAL ID COMA var_declaration2 .
+
+    SEMICOLON       reduce using rule 20 (var_declaration3 -> ID IGUAL ID COMA var_declaration2 .)
+
+
+state 126
+
+    (113) args_list -> args_list COMA expression .
+
+    COMA            reduce using rule 113 (args_list -> args_list COMA expression .)
+    RPAREN          reduce using rule 113 (args_list -> args_list COMA expression .)
+
+
+state 127
+
+    (10) var_declaration2 -> ID LBRACKET NUMERO RBRACKET . SEMICOLON
+
+    SEMICOLON       shift and go to state 128
+
+
+state 128
+
+    (10) var_declaration2 -> ID LBRACKET NUMERO RBRACKET SEMICOLON .
+
+    SEMICOLON       reduce using rule 10 (var_declaration2 -> ID LBRACKET NUMERO RBRACKET SEMICOLON .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for IGUAL in state 18 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 96 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 96 resolved as shift
+WARNING: reduce/reduce conflict in state 87 resolved using rule (var_declaration3 -> ID IGUAL NUMERO)
+WARNING: rejected rule (factor -> NUMERO) in state 87
+WARNING: reduce/reduce conflict in state 90 resolved using rule (var_declaration3 -> ID IGUAL TEXTO)
+WARNING: rejected rule (var -> TEXTO) in state 90
+WARNING: reduce/reduce conflict in state 91 resolved using rule (var_declaration3 -> ID IGUAL ID)
+WARNING: rejected rule (var -> ID) in state 91
+WARNING: reduce/reduce conflict in state 97 resolved using rule (additive_expression -> additive_expression addop term)
+WARNING: rejected rule (additive_expression -> term) in state 97

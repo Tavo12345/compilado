@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Sep 30 12:10:43 2017
+
+@author: Gustavo
+"""
+
 import ply.yacc as yacc
 from perl_lexer import tokens
 import perl_lexer
@@ -20,6 +27,7 @@ def p_declaration_list_2(p):
 def p_declaration(p):
 	'''declaration : var_declaration
 				  | fun_declaration
+                         | fun_execute
 				  | header_declaration'''
 	pass
 
@@ -42,6 +50,7 @@ def p_var_declaration_3(p):
 	                               | ID IGUAL NUMERO
 	                               | ID IGUAL TEXTO COMA var_declaration2
 	                               | ID IGUAL TEXTO
+                                     | ID IGUAL simple_expression
 	                               | MULTIPLICA ID COMA var_declaration2
 	                               | MULTIPLICA ID
 	                               | ID IGUAL ID COMA var_declaration2
@@ -49,13 +58,20 @@ def p_var_declaration_3(p):
 	                               | COMA
 	                               | MULTIPLICA MULTIPLICA ID
 	                               | MULTIPLICA MULTIPLICA ID COMA var_declaration2
+                                     
 
         '''
 	pass
 
+def p_fun_execute(p):
+    '''fun_execute : PRINT expression SEMICOLON
+                    | PRINT expression COMA expression SEMICOLON
+                    | CHOP expression SEMICOLON                    
+    '''
+    pass
 
 def p_fun_declaration(p):
-	'fun_declaration : SUB ID LPAREN params RPAREN compount_stmt'
+	'fun_declaration : SUB IDF LBLOCK compount_stmt RBLOCK'
 	pass
 
 def p_params_1(p):
@@ -83,7 +99,10 @@ def p_param_2(p):
 	pass
 
 def p_compount_stmt(p):
-	'compount_stmt : LBLOCK local_declarations statement_list RBLOCK'
+	'''compount_stmt : var_declaration
+                         | fun_execute
+				  | header_declaration
+      '''
 	pass
 
 def p_local_declarations_1(p):
@@ -127,6 +146,10 @@ def p_selection_stmt_2(p):
 	'selection_stmt : IF LPAREN expression RPAREN statement ELSE statement'
 	pass
 
+def p_selection_stmt_3(p):
+	'selection_stmt : UNTIL LPAREN expression RPAREN statement'
+	pass
+
 def p_iteration_stmt_1(p):
 	'iteration_stmt : WHILE LPAREN expression RPAREN statement'
 	pass
@@ -158,7 +181,9 @@ def p_expression_3(p):
 	pass
 
 def p_var_1(p):
-	'var : ID'
+	'''var : ID 
+                 | TEXTO 
+     '''
 	pass
 
 def p_var_2(p):
@@ -207,7 +232,9 @@ def p_relop(p):
 	pass
 
 def p_additive_expression_1(p):
-	'additive_expression : additive_expression addop term'
+	'''additive_expression : additive_expression addop term
+                             | additive_expression addop additive_expression
+     '''
 	pass
 
 def p_additive_expression_2(p):
@@ -234,10 +261,13 @@ def p_additive_expression_7(p):
 	'additive_expression : term MULTIPLICAMULTIPLICA'
 	pass
 
+#def p_additive_expression_8(p):
+#	'additive_expression : var'
+#	pass
 
 def p_addop(p):
 	'''addop : SUMA 
-				| RESTA 
+			| RESTA 
 	'''
 	pass
 
@@ -311,8 +341,8 @@ def p_error(p):
 
 parser = yacc.yacc()
 
-if __name__ == '__main__':
-
+if __name__ == '__main__':    
+ #     print("hola")
 	if (len(sys.argv) > 1):
 		fin = sys.argv[1]
 	else:

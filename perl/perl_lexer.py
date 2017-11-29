@@ -126,7 +126,7 @@ tokens = (
     'POST',
     'SDIAGONAL',
     'STUDY',
-    'LOG',
+#    'LOG',
     'SIN',
     'EACH',
     'SUB',
@@ -148,6 +148,7 @@ tokens = (
 
     # Others   
     'ID', 
+    'IDF',
     'NUMERO',
     #'PALABRA',
     'TEXTO',
@@ -168,8 +169,8 @@ t_LPAREN = r'\('
 t_RPAREN  = r'\)'
 t_LBRACKET = r'\['
 t_RBRACKET = r'\]'
-t_LBLOCK   = r'{'
-t_RBLOCK   = r'}'
+t_LBLOCK   = r'\{'
+t_RBLOCK   = r'\}'
 t_COLON   = r':'
 t_AMPERSANT = r'\&'
 t_PLECA = r'\|'
@@ -394,9 +395,9 @@ def t_STUDY(t):
     r'study'
     return t
     
-def t_LOG(t):
-    r'log'
-    return t
+#def t_LOG(t):
+#    r'log'
+#    return t
     
 def t_SIN(t):
     r'sin'
@@ -464,7 +465,11 @@ def t_NUMERO(t):
     return t
 
 def t_ID(t):
-    r'(\$|@|%)\w+(_\d\w)*'
+    r'(\$|\@|\%)\w+(_\d\w)*'
+    return t
+    
+def t_IDF(t):
+    r'\w+(_\d\w)*'
     return t
     
 def t_TEXTO(t):
