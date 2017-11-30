@@ -501,7 +501,7 @@ def buscarFicheros(directorio):
 		cont = cont+1
 
 	while respuesta == False:
-		numArchivo = raw_input('\nNumero del test: ')
+		numArchivo = input('\nNumero del test: ')
 		for file in files:
 			if file == files[int(numArchivo)-1]:
 				respuesta = True
@@ -519,7 +519,7 @@ def traducir(result):
 	print ("El programa traducido se guardo en \"graphviztrhee.vz\"")
  
 
-directorio = 'D:/UTP-2017-2/Compiladores/Proyecto/compilador/perl/test'
+directorio = 'D:/UTP-2017-2/Compiladores/Proyecto/compilador/perl/test/'
 archivo = buscarFicheros(directorio)
 test = directorio+archivo
 fp = codecs.open(test,"r","utf-8")
