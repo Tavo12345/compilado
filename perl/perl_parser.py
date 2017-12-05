@@ -19,7 +19,7 @@ from perl_semantico import *
 precedence = (
 	('right','ID','IDF','IF','WHILE','UNTIL','FOR'),
 #	('right','PROCEDURE'),
-	('right','VAR'),
+#	('right','VAR'),
 #	('right', 'ASSIGN'),
 #	('right','UPDATE'),
 #	('left','NE'),
@@ -27,7 +27,7 @@ precedence = (
 	('left','SUMA','RESTA'),
 	('left','MULTIPLICA','DIVIDE'),
 #	('right','ODD'),
-	('left','LPARENT','RPARENT'),
+	('left','LPAREN','RPAREN'),
  )
 	
  
@@ -38,11 +38,11 @@ def p_program(p):
 
 def p_declaration_list_1(p):
 	'declaration_list : declaration_list  declaration' 
-	p[0] = declaration_list1(p[1],p[2],"declaration_list1")
+	p[0] = declaration_list_1(p[1],p[2],"declaration_list_1")
 
 def p_declaration_list_2(p):
 	'declaration_list : declaration'
-	p[0] = declaration_list2(p[1],"declaration_list2")
+	p[0] = declaration_list_2(p[1],"declaration_list_2")
 
 def p_declaration1(p):
 	'''declaration : var_declaration'''
@@ -66,55 +66,55 @@ def p_header_declaration_1(p):
 
 def p_var_declaration_1(p):
 	'var_declaration : var_declaration3 SEMICOLON'
-	p[0] = var_declaration1(p[1],"var_declaration1")
+	p[0] = var_declaration_1(p[1],"var_declaration_1")
 
 def p_var_declaration_2(p):
 	'var_declaration2 :  ID LBRACKET NUMERO RBRACKET SEMICOLON'
-	p[0] = declaration2(Id(p[1]),Numero(p[3]),"declaration2")
+	p[0] = var_declaration_2(Id(p[1]),Numero(p[3]),"var_declaration_2")
 
 def p_var_declaration_3(p):                     
 	'''var_declaration3 : ID COMA var_declaration2'''
-	p[0] = declaration3(Id(p[1]),p[3],"declaration3")
+	p[0] = var_declaration_3(Id(p[1]),p[3],"var_declaration_3")
 
 def p_var_declaration_4(p):                     
 	'''var_declaration3 : ID'''
-	p[0] = declaration4(Id(p[1]),"declaration4")
+	p[0] = var_declaration_4(Id(p[1]),"var_declaration_4")
 
 def p_var_declaration_5(p):                     
 	'''var_declaration3 : ID IGUAL NUMERO COMA var_declaration2'''
-	p[0] = declaration5(Id(p[1]),Numero(p[3]),p[5],"declaration5")
+	p[0] = var_declaration_5(Id(p[1]),Numero(p[3]),p[5],"var_declaration_5")
 
 def p_var_declaration_6(p):                     
 	'''var_declaration3 : ID IGUAL NUMERO'''
-	p[0] = declaration6(Id(p[1]),Numero(p[3]),"declaration6")
+	p[0] = var_declaration_6(Id(p[1]),Numero(p[3]),"var_declaration_6")
 
 def p_var_declaration_7(p):                     
 	'''var_declaration3 : ID IGUAL TEXTO COMA var_declaration2'''
-	p[0] = declaration7(Id(p[1]),Texto(p[3]),p[5],"declaration7")
+	p[0] = var_declaration_7(Id(p[1]),Texto(p[3]),p[5],"var_declaration_7")
 
 def p_var_declaration_8(p):                     
 	'''var_declaration3 : ID IGUAL TEXTO'''
-	p[0] = declaration8(Id(p[1]),Texto(p[3]),"declaration8")
+	p[0] = var_declaration_8(Id(p[1]),Texto(p[3]),"var_declaration_8")
 
 def p_var_declaration_9(p):                     
 	'''var_declaration3 : ID IGUAL simple_expression'''
-	p[0] = declaration9(Id(p[1]),p[3],"declaration9")
+	p[0] = var_declaration_9(Id(p[1]),p[3],"var_declaration_9")
 
 def p_var_declaration_10(p):                     
 	'''var_declaration3 : MULTIPLICA ID COMA var_declaration2'''
-	p[0] = declaration10(Id(p[2]),p[4],"declaration10")
+	p[0] = var_declaration_10(Id(p[2]),p[4],"var_declaration_10")
 
 def p_var_declaration_11(p):                     
 	'''var_declaration3 : ID IGUAL ID'''
-	p[0] = declaration11(Id(p[1]),Id(p[3]),"declaration11")
+	p[0] = var_declaration_11(Id(p[1]),Id(p[3]),"var_declaration_11")
 
 def p_var_declaration_12(p):                     
 	'''var_declaration3 : ID IGUAL ID COMA var_declaration2'''
-	p[0] = declaration12(Id(p[1]),Id(p[3]),p[5],"declaration12")
+	p[0] = var_declaration_12(Id(p[1]),Id(p[3]),p[5],"var_declaration_12")
 
 def p_var_declaration_13(p):                     
 	'''var_declaration3 : MULTIPLICA ID'''
-	p[0] = declaration13(Id(p[2]),"declaration13")
+	p[0] = var_declaration_13(Id(p[2]),"var_declaration_13")
 
 def p_var_declaration_14(p):                     
 	'''var_declaration3 : COMA'''
@@ -122,11 +122,11 @@ def p_var_declaration_14(p):
 
 def p_var_declaration_15(p):                     
 	'''var_declaration3 : MULTIPLICA MULTIPLICA ID'''
-	p[0] = declaration15(Id(p[3]),"declaration15")
+	p[0] = var_declaration_15(Id(p[3]),"var_declaration_15")
 
 def p_var_declaration_16(p):                     
 	'''var_declaration3 : MULTIPLICA MULTIPLICA ID COMA var_declaration2'''
-	p[0] = declaration16(Id(p[3]),p[5],"declaration16")
+	p[0] = var_declaration_16(Id(p[3]),p[5],"var_declaration_16")
 
 def p_fun_execute1(p):
     '''fun_execute : PRINT expression SEMICOLON'''
@@ -209,7 +209,7 @@ def p_statement3(p):
 	p[0] = statement3(p[1],"statement3")
 
 def p_statement4(p):
-	'''statement : iteration_stm'''
+	'''statement : iteration_stmt'''
 	p[0] = statement4(p[1],"statement4")
 
 def p_statement5(p):
@@ -526,8 +526,10 @@ fp = codecs.open(test,"r","utf-8")
 cadena = fp.read()
 fp.close()
 
-parser = yacc.yacc()
-result = parser.parse(cadena,debug=1)
+#parser = yacc.yacc()
+yacc.yacc()
+#result = parser.parse(cadena,debug=1)
+result = yacc.parse(cadena,debug=1)
 
 #result.imprimir(" ")
 #print result.traducir()

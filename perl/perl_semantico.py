@@ -2486,3 +2486,61 @@ class Numero(Nodo):
 		txt += id + "[label= "+str(self.name)+"]"+"\n\t"
 
 		return id
+  
+class Texto(Nodo):
+	def __init__(self,name):
+		self.name = name
+
+	def imprimir(self,ident):
+		print (ident+"Texto: "+str(self.name))
+			
+	def traducir(self):
+		global txt
+		id = incremetarContador()
+		txt += id + "[label= "+str(self.name)+"]"+"\n\t"
+
+		return id
+  
+  
+class Print(Nodo):
+	def __init__(self,name):
+		self.name = name
+
+	def imprimir(self,ident):
+		print (ident+"Print: "+str(self.name))
+			
+	def traducir(self):
+		global txt
+		id = incremetarContador()
+		txt += id + "[label= "+str(self.name)+"]"+"\n\t"
+
+		return id
+  
+  
+class Chop(Nodo):
+	def __init__(self,name):
+		self.name = name
+
+	def imprimir(self,ident):
+		print (ident+"Chop: "+str(self.name))
+			
+	def traducir(self):
+		global txt
+		id = incremetarContador()
+		txt += id + "[label= "+str(self.name)+"]"+"\n\t"
+
+		return id
+  
+class Sub(Nodo):
+	def __init__(self,name):
+		self.name = name
+
+	def imprimir(self,ident):
+		print (ident+"Sub: "+str(self.name))
+			
+	def traducir(self):
+		global txt
+		id = incremetarContador()
+		txt += id + "[label= "+str(self.name)+"]"+"\n\t"
+
+		return id
