@@ -25,7 +25,7 @@ class Null(Nodo):
 
 	def traducir(self):
 		global txt
-		id = incremetarContador()
+		id = incrementarContador()
 		txt += id+"[label= "+"nodo_nulo"+"]"+"\n\t"
 
 		return id
@@ -33,7 +33,7 @@ class Null(Nodo):
 class program(Nodo):
 	def __init__(self,hijo1,name):
 		self.name = name
-		self.name = hijo1
+		self.hijo1 = hijo1
 
 	def imprimir(self,ident):
 		self.hijo1.imprimir(" "+ident)
@@ -92,7 +92,7 @@ class declaration_list_1(Nodo):
 class declaration_list_2(Nodo):
 	def __init__(self,hijo1,name):
 		self.name = name
-		self.name = hijo1
+		self.hijo1 = hijo1
 
 	def imprimir(self,ident):
 		self.hijo1.imprimir(" "+ident)
@@ -115,7 +115,7 @@ class declaration_list_2(Nodo):
 class declaration1(Nodo):
 	def __init__(self,hijo1,name):
 		self.name = name
-		self.name = hijo1
+		self.hijo1 = hijo1
 
 	def imprimir(self,ident):
 		self.hijo1.imprimir(" "+ident)
@@ -139,7 +139,7 @@ class declaration1(Nodo):
 class declaration2(Nodo):
 	def __init__(self,hijo1,name):
 		self.name = name
-		self.name = hijo1
+		self.hijo = hijo1
 
 	def imprimir(self,ident):
 		self.hijo1.imprimir(" "+ident)
@@ -148,7 +148,6 @@ class declaration2(Nodo):
 	def traducir(self):
 		global txt
 		id = incrementarContador()
-
 		if type(self.hijo1) == type(tuple()):
 			hijo1 = self.hijo1[0].traducir()
 		else:
@@ -163,7 +162,7 @@ class declaration2(Nodo):
 class declaration3(Nodo):
 	def __init__(self,hijo1,name):
 		self.name = name
-		self.name = hijo1
+		self.hijo1 = hijo1
 
 	def imprimir(self,ident):
 		self.hijo1.imprimir(" "+ident)
@@ -187,7 +186,7 @@ class declaration3(Nodo):
 class declaration4(Nodo):
 	def __init__(self,hijo1,name):
 		self.name = name
-		self.name = hijo1
+		self.hijo1 = hijo1
 
 	def imprimir(self,ident):
 		self.hijo1.imprimir(" "+ident)
@@ -208,23 +207,24 @@ class declaration4(Nodo):
 		return id
 		
 
-#class header_declaration_1(Nodo):
-#	def __init__(self,name):
-#		self.name = name
-#
-#	def imprimir(ident):
-#
-#	def traducir(self):
-#		global txt
-#		id = incrementarContador()
-#
-#		return id
+class header_declaration_1(Nodo):
+	def __init__(self,name):
+		self.name = name
+
+	def imprimir(ident):
+         print (ident + "Cabecera")
+
+	def traducir(self):
+		global txt
+		id = incrementarContador()
+
+		return id
 		
 
 class var_declaration_1(Nodo):
 	def __init__(self,hijo1,name):
 		self.name = name
-		self.name = hijo1
+		self.hijo1 = hijo1
 
 	def imprimir(self,ident):
 		self.hijo1.imprimir(" "+ident)
@@ -2047,30 +2047,34 @@ class additive_expression_8(Nodo):
 		return id
 		
 
-#class addop1(Nodo):
-#	def __init__(self,name):
-#		self.name = name
-#
-#	def imprimir(ident):
-#
-#	def traducir(self):
-#		global txt
-#		id = incrementarContador()
-#
-#		return id
+class addop1(Nodo):
+	def __init__(self,name):
+		self.name = name
+
+	def imprimir(self,ident):
+		print (ident+" + ")
+			
+	def traducir(self):
+		global txt
+		id = incrementarContador()
+		txt += id + "[label= "+str(self.name)+"]"+"\n\t"
+
+		return id
 		
 
-#class addop2(Nodo):
-#	def __init__(self,name):
-#		self.name = name
-#
-#	def imprimir(ident):
-#
-#	def traducir(self):
-#		global txt
-#		id = incrementarContador()
-#
-#		return id
+class addop2(Nodo):
+	def __init__(self,name):
+		self.name = name
+
+	def imprimir(self,ident):
+		print (ident+" - ")
+			
+	def traducir(self):
+		global txt
+		id = incrementarContador()
+		txt += id + "[label= "+str(self.name)+"]"+"\n\t"
+
+		return id
 		
 
 class term_1(Nodo):
@@ -2139,30 +2143,34 @@ class term_2(Nodo):
 		return id
 		
 
-#class mulop1(Nodo):
-#	def __init__(self,name):
-#		self.name = name
-#
-#	def imprimir(ident):
-#
-#	def traducir(self):
-#		global txt
-#		id = incrementarContador()
-#
-#		return id
+class mulop1(Nodo):
+	def __init__(self,name):
+              self.name = name
+
+	def imprimir(self,ident):
+		print (ident+" * ")
+			
+	def traducir(self):
+		global txt
+		id = incrementarContador()
+		txt += id + "[label= "+str(self.name)+"]"+"\n\t"
+
+		return id
 #		
 
-#class mulop2(Nodo):
-#	def __init__(self,name):
-#		self.name = name
-#
-#	def imprimir(ident):
-#
-#	def traducir(self):
-#		global txt
-#		id = incrementarContador()
-#
-#		return id
+class mulop2(Nodo):
+	def __init__(self,name):
+              self.name = name
+
+	def imprimir(self,ident):
+		print (ident+" / ")
+			
+	def traducir(self):
+		global txt
+		id = incrementarContador()
+		txt += id + "[label= "+str(self.name)+"]"+"\n\t"
+
+		return id
 		
 
 class factor_1(Nodo):
@@ -2412,7 +2420,7 @@ class Id(Nodo):
 			
 	def traducir(self):
 		global txt
-		id = incremetarContador()
+		id = incrementarContador()
 		txt += id + "[label= "+self.name+"]"+"\n\t"
 
 		return id
@@ -2426,7 +2434,7 @@ class Idf(Nodo):
 			
 	def traducir(self):
 		global txt
-		id = incremetarContador()
+		id = incrementarContador()
 		txt += id + "[label= "+self.name+"]"+"\n\t"
 
 		return id
@@ -2440,7 +2448,7 @@ class Suma(Nodo):
 			
 	def traducir(self):
 		global txt
-		id = incremetarContador()
+		id = incrementarContador()
 		txt += id + "[label= \""+self.name+"\"]"+"\n\t"
 
 		return id
@@ -2454,7 +2462,7 @@ class Resta(Nodo):
 			
 	def traducir(self):
 		global txt
-		id = incremetarContador()
+		id = incrementarContador()
 		txt += id + "[label= \""+self.name+"\"]"+"\n\t"
 
 		return id
@@ -2468,7 +2476,7 @@ class Divide(Nodo):
 			
 	def traducir(self):
 		global txt
-		id = incremetarContador()
+		id = incrementarContador()
 		txt += id + "[label= \""+self.name+"\"]"+"\n\t"
 
 		return id
@@ -2482,7 +2490,7 @@ class Numero(Nodo):
 			
 	def traducir(self):
 		global txt
-		id = incremetarContador()
+		id = incrementarContador()
 		txt += id + "[label= "+str(self.name)+"]"+"\n\t"
 
 		return id
@@ -2496,7 +2504,7 @@ class Texto(Nodo):
 			
 	def traducir(self):
 		global txt
-		id = incremetarContador()
+		id = incrementarContador()
 		txt += id + "[label= "+str(self.name)+"]"+"\n\t"
 
 		return id
@@ -2511,7 +2519,7 @@ class Print(Nodo):
 			
 	def traducir(self):
 		global txt
-		id = incremetarContador()
+		id = incrementarContador()
 		txt += id + "[label= "+str(self.name)+"]"+"\n\t"
 
 		return id
@@ -2526,7 +2534,7 @@ class Chop(Nodo):
 			
 	def traducir(self):
 		global txt
-		id = incremetarContador()
+		id = incrementarContador()
 		txt += id + "[label= "+str(self.name)+"]"+"\n\t"
 
 		return id
@@ -2540,7 +2548,7 @@ class Sub(Nodo):
 			
 	def traducir(self):
 		global txt
-		id = incremetarContador()
+		id = incrementarContador()
 		txt += id + "[label= "+str(self.name)+"]"+"\n\t"
 
 		return id

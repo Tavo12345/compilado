@@ -19,6 +19,3 @@ print "El resultado de la captura 2 es: ",$var2;
 print "El resultado de la captura 3 es: ",$var3;
 print "El resultado de resul es: ",$resul;
 
-sub hola {
-	print "Funcion de prueba";
-}

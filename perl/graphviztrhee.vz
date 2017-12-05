@@ -1,0 +1,408 @@
+digraph G {
+	 18[label= declaration4]
+	18 -> 19
+	17[label= declaration_list_2]
+	17 -> 18
+	22[label= print]
+	29[label= "Primer valor: "]
+	28[label= var_2]
+	28 -> 29
+	27[label= factor_2]
+	27 -> 28
+	26[label= term_2]
+	26 -> 27
+	25[label= additive_expression_3]
+	25 -> 26
+	24[label= simple_expression_2]
+	24 -> 25
+	23[label= expression_2]
+	23 -> 24
+	21[label= fun_execute1]
+	21 -> 22
+	21 -> 23
+	20[label= declaration3]
+	20 -> 21
+	16[label= declaration_list_1]
+	16 -> 17
+	16 -> 20
+	33[label= $var1]
+	34[label= 2.0]
+	32[label= var_declaration_6]
+	32 -> 33
+	32 -> 34
+	31[label= var_declaration_1]
+	31 -> 32
+	30[label= declaration1]
+	30 -> 31
+	15[label= declaration_list_1]
+	15 -> 16
+	15 -> 30
+	37[label= print]
+	44[label= "Segundo valor "]
+	43[label= var_2]
+	43 -> 44
+	42[label= factor_2]
+	42 -> 43
+	41[label= term_2]
+	41 -> 42
+	40[label= additive_expression_3]
+	40 -> 41
+	39[label= simple_expression_2]
+	39 -> 40
+	38[label= expression_2]
+	38 -> 39
+	36[label= fun_execute1]
+	36 -> 37
+	36 -> 38
+	35[label= declaration3]
+	35 -> 36
+	14[label= declaration_list_1]
+	14 -> 15
+	14 -> 35
+	48[label= $var2]
+	49[label= 5.0]
+	47[label= var_declaration_6]
+	47 -> 48
+	47 -> 49
+	46[label= var_declaration_1]
+	46 -> 47
+	45[label= declaration1]
+	45 -> 46
+	13[label= declaration_list_1]
+	13 -> 14
+	13 -> 45
+	53[label= $resul]
+	60[label= $var1]
+	59[label= var_1]
+	59 -> 60
+	58[label= factor_2]
+	58 -> 59
+	57[label= term_2]
+	57 -> 58
+	56[label= additive_expression_3]
+	56 -> 57
+	61[label= addop1]
+	65[label= $var2]
+	64[label= var_1]
+	64 -> 65
+	63[label= factor_2]
+	63 -> 64
+	62[label= term_2]
+	62 -> 63
+	55[label= additive_expression_1]
+	55 -> 56
+	55 -> 61
+	55 -> 62
+	54[label= simple_expression_2]
+	54 -> 55
+	52[label= var_declaration_9]
+	52 -> 53
+	52 -> 54
+	51[label= var_declaration_1]
+	51 -> 52
+	50[label= declaration1]
+	50 -> 51
+	12[label= declaration_list_1]
+	12 -> 13
+	12 -> 50
+	69[label= $resul1]
+	76[label= $var1]
+	75[label= var_1]
+	75 -> 76
+	74[label= factor_2]
+	74 -> 75
+	73[label= term_2]
+	73 -> 74
+	77[label= mulop1]
+	80[label= $var2]
+	79[label= var_1]
+	79 -> 80
+	78[label= factor_2]
+	78 -> 79
+	72[label= term_1]
+	72 -> 73
+	72 -> 77
+	72 -> 78
+	71[label= additive_expression_3]
+	71 -> 72
+	70[label= simple_expression_2]
+	70 -> 71
+	68[label= var_declaration_9]
+	68 -> 69
+	68 -> 70
+	67[label= var_declaration_1]
+	67 -> 68
+	66[label= declaration1]
+	66 -> 67
+	11[label= declaration_list_1]
+	11 -> 12
+	11 -> 66
+	84[label= $resul2]
+	91[label= $var1]
+	90[label= var_1]
+	90 -> 91
+	89[label= factor_2]
+	89 -> 90
+	88[label= term_2]
+	88 -> 89
+	87[label= additive_expression_3]
+	87 -> 88
+	92[label= addop2]
+	96[label= $var2]
+	95[label= var_1]
+	95 -> 96
+	94[label= factor_2]
+	94 -> 95
+	93[label= term_2]
+	93 -> 94
+	86[label= additive_expression_1]
+	86 -> 87
+	86 -> 92
+	86 -> 93
+	85[label= simple_expression_2]
+	85 -> 86
+	83[label= var_declaration_9]
+	83 -> 84
+	83 -> 85
+	82[label= var_declaration_1]
+	82 -> 83
+	81[label= declaration1]
+	81 -> 82
+	10[label= declaration_list_1]
+	10 -> 11
+	10 -> 81
+	100[label= $resul3]
+	107[label= $var1]
+	106[label= var_1]
+	106 -> 107
+	105[label= factor_2]
+	105 -> 106
+	104[label= term_2]
+	104 -> 105
+	108[label= mulop2]
+	111[label= $var2]
+	110[label= var_1]
+	110 -> 111
+	109[label= factor_2]
+	109 -> 110
+	103[label= term_1]
+	103 -> 104
+	103 -> 108
+	103 -> 109
+	102[label= additive_expression_3]
+	102 -> 103
+	101[label= simple_expression_2]
+	101 -> 102
+	99[label= var_declaration_9]
+	99 -> 100
+	99 -> 101
+	98[label= var_declaration_1]
+	98 -> 99
+	97[label= declaration1]
+	97 -> 98
+	9[label= declaration_list_1]
+	9 -> 10
+	9 -> 97
+	114[label= print]
+	121[label= "tercer valor "]
+	120[label= var_2]
+	120 -> 121
+	119[label= factor_2]
+	119 -> 120
+	118[label= term_2]
+	118 -> 119
+	117[label= additive_expression_3]
+	117 -> 118
+	116[label= simple_expression_2]
+	116 -> 117
+	115[label= expression_2]
+	115 -> 116
+	113[label= fun_execute1]
+	113 -> 114
+	113 -> 115
+	112[label= declaration3]
+	112 -> 113
+	8[label= declaration_list_1]
+	8 -> 9
+	8 -> 112
+	125[label= %var3]
+	126[label= 7.0]
+	124[label= var_declaration_6]
+	124 -> 125
+	124 -> 126
+	123[label= var_declaration_1]
+	123 -> 124
+	122[label= declaration1]
+	122 -> 123
+	7[label= declaration_list_1]
+	7 -> 8
+	7 -> 122
+	129[label= chop]
+	136[label= $var3]
+	135[label= var_1]
+	135 -> 136
+	134[label= factor_2]
+	134 -> 135
+	133[label= term_2]
+	133 -> 134
+	132[label= additive_expression_3]
+	132 -> 133
+	131[label= simple_expression_2]
+	131 -> 132
+	130[label= expression_2]
+	130 -> 131
+	128[label= fun_execute3]
+	128 -> 129
+	128 -> 130
+	127[label= declaration3]
+	127 -> 128
+	6[label= declaration_list_1]
+	6 -> 7
+	6 -> 127
+	139[label= print]
+	146[label= "El resultado de la captura 1 es: "]
+	145[label= var_2]
+	145 -> 146
+	144[label= factor_2]
+	144 -> 145
+	143[label= term_2]
+	143 -> 144
+	142[label= additive_expression_3]
+	142 -> 143
+	141[label= simple_expression_2]
+	141 -> 142
+	140[label= expression_2]
+	140 -> 141
+	153[label= $var1]
+	152[label= var_1]
+	152 -> 153
+	151[label= factor_2]
+	151 -> 152
+	150[label= term_2]
+	150 -> 151
+	149[label= additive_expression_3]
+	149 -> 150
+	148[label= simple_expression_2]
+	148 -> 149
+	147[label= expression_2]
+	147 -> 148
+	138[label= fun_execute2]
+	138 -> 139
+	138 -> 140
+	138 -> 147
+	137[label= declaration3]
+	137 -> 138
+	5[label= declaration_list_1]
+	5 -> 6
+	5 -> 137
+	156[label= print]
+	163[label= "El resultado de la captura 2 es: "]
+	162[label= var_2]
+	162 -> 163
+	161[label= factor_2]
+	161 -> 162
+	160[label= term_2]
+	160 -> 161
+	159[label= additive_expression_3]
+	159 -> 160
+	158[label= simple_expression_2]
+	158 -> 159
+	157[label= expression_2]
+	157 -> 158
+	170[label= $var2]
+	169[label= var_1]
+	169 -> 170
+	168[label= factor_2]
+	168 -> 169
+	167[label= term_2]
+	167 -> 168
+	166[label= additive_expression_3]
+	166 -> 167
+	165[label= simple_expression_2]
+	165 -> 166
+	164[label= expression_2]
+	164 -> 165
+	155[label= fun_execute2]
+	155 -> 156
+	155 -> 157
+	155 -> 164
+	154[label= declaration3]
+	154 -> 155
+	4[label= declaration_list_1]
+	4 -> 5
+	4 -> 154
+	173[label= print]
+	180[label= "El resultado de la captura 3 es: "]
+	179[label= var_2]
+	179 -> 180
+	178[label= factor_2]
+	178 -> 179
+	177[label= term_2]
+	177 -> 178
+	176[label= additive_expression_3]
+	176 -> 177
+	175[label= simple_expression_2]
+	175 -> 176
+	174[label= expression_2]
+	174 -> 175
+	187[label= $var3]
+	186[label= var_1]
+	186 -> 187
+	185[label= factor_2]
+	185 -> 186
+	184[label= term_2]
+	184 -> 185
+	183[label= additive_expression_3]
+	183 -> 184
+	182[label= simple_expression_2]
+	182 -> 183
+	181[label= expression_2]
+	181 -> 182
+	172[label= fun_execute2]
+	172 -> 173
+	172 -> 174
+	172 -> 181
+	171[label= declaration3]
+	171 -> 172
+	3[label= declaration_list_1]
+	3 -> 4
+	3 -> 171
+	190[label= print]
+	197[label= "El resultado de resul es: "]
+	196[label= var_2]
+	196 -> 197
+	195[label= factor_2]
+	195 -> 196
+	194[label= term_2]
+	194 -> 195
+	193[label= additive_expression_3]
+	193 -> 194
+	192[label= simple_expression_2]
+	192 -> 193
+	191[label= expression_2]
+	191 -> 192
+	204[label= $resul]
+	203[label= var_1]
+	203 -> 204
+	202[label= factor_2]
+	202 -> 203
+	201[label= term_2]
+	201 -> 202
+	200[label= additive_expression_3]
+	200 -> 201
+	199[label= simple_expression_2]
+	199 -> 200
+	198[label= expression_2]
+	198 -> 199
+	189[label= fun_execute2]
+	189 -> 190
+	189 -> 191
+	189 -> 198
+	188[label= declaration3]
+	188 -> 189
+	2[label= declaration_list_1]
+	2 -> 3
+	2 -> 188
+	1[label= program]
+	1->2
+	}

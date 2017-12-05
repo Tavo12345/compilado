@@ -62,7 +62,7 @@ def p_declaration4(p):
 
 def p_header_declaration_1(p):
 	'header_declaration : CABECERA'
-	pass
+	p[0] = header_declaration_1("header_declaration_1")
 
 def p_var_declaration_1(p):
 	'var_declaration : var_declaration3 SEMICOLON'
@@ -387,11 +387,11 @@ def p_additive_expression_8(p):
 
 def p_addop1(p):
 	'''addop : SUMA'''
-	pass
+	p[0] = addop1("addop1")
 
 def p_addop2(p):
 	'''addop : RESTA'''
-	pass
+	p[0] = addop2("addop2")
 
 def p_term_1(p):
 	'term : term mulop factor'
@@ -405,11 +405,11 @@ def p_term_2(p):
 
 def p_mulop1(p):
 	'''mulop : 	MULTIPLICA'''
-	pass
+	p[0] = mulop1("mulop1")
 
 def p_mulop2(p):
 	'''mulop : DIVIDE'''
-	pass
+	p[0] = mulop2("mulop2")
 
 def p_factor_1(p):
 	'factor : LPAREN expression RPAREN'
