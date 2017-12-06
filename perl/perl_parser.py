@@ -519,7 +519,7 @@ def traducir(result):
 	print ("El programa traducido se guardo en \"graphviztrhee.vz\"")
  
 
-directorio = 'D:/UTP-2017-2/Compiladores/Proyecto/compilador/perl/test/'
+directorio = '/home/gustavo/Desktop/compilador/perl/'
 archivo = buscarFicheros(directorio)
 test = directorio+archivo
 fp = codecs.open(test,"r","utf-8")
